@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'antd/dist/reset.css'; 
+
+*, *::before, *::after {
+  outline: 0 !important;
+  transition: all .35s ease-in-out;
+}
+
+html, body {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: visible;
+  min-height: 100vh;
+}
+
+@layer components {
+  .overlay{
+    @apply top-0 left-0 absolute w-full h-full;
+  }
+  .after-overlay{
+    @apply after:top-0 after:left-0 after:absolute after:w-full after:h-full;
+  }
+  .before-overlay{
+    @apply before:top-0 before:left-0 before:absolute before:w-full before:h-full;
+  }
+  .heading-one{
+    @apply font-bold text-text text-3xl md:text-4xl;
+  }
+  .heading-two{
+    @apply font-bold text-text text-2xl md:text-3xl;
+  }
+  .heading-three{
+    @apply font-semibold text-text text-xl md:text-2xl;
+  }
+  .heading-four{
+    @apply font-semibold text-text text-lg md:text-xl;
+  }
+  .heading-five{
+    @apply font-semibold text-text text-base md:text-lg;
+  }
+  .text-default{
+    @apply font-medium text-text text-sm md:text-lg;
+  }
+  .text-small{
+    @apply font-normal text-text text-xs md:text-sm;
+  }
+  .text-xsmall{
+    @apply font-normal text-text text-[.65rem] md:text-xs;
+  }
+  .text-xxsmall{
+    @apply font-normal text-text text-[.5rem] md:text-[.65rem];
+  }
+  .card{
+    @apply bg-white p-2 md:p-4 rounded-md;
+  }
+  .button {
+    @apply bg-primary py-2 px-4 md:px-6 rounded-md text-white text-xs md:text-sm font-medium cursor-pointer whitespace-nowrap;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .leading-loose {
+    line-height: 1.8;
+  }
+
+  .leading-snug {
+    line-height: 1.6;
+  }
+
+  .shad {
+    box-shadow: 0 0 18px -8px #13426440;
+  }
+}
+
+
+@media screen and (max-width: 640px) {
+  .container {
+    min-width: 100% !important;
+  }
+}
