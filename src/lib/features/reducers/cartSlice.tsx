@@ -33,11 +33,22 @@ export const cartSlice = createSlice({
          * The payload is the new cart item properties that is being modified (might not be all the properties, hence, the use of the spread operator syntax to replace only matching properties)
          */
         changeInCart(state, action: PayloadAction<Pick<CartProp, "id" | "qty">>) {
-            state.forEach((el, i) => {
-                if (el.id === action.payload.id) {
-                    state[i] = { ...state[i], qty: action.payload.qty }
-                }
-            })
+            console.log({qty: action.payload.qty})
+            if (action.payload.qty === 0) {
+                state.forEach((el, i) => {
+                    if (el.id === action.payload.id) {
+                        state.splice(i, 1)
+                    }
+                })
+                toast.error(`Item removed from cart`, { id: `123${state.length}`, })
+            }
+            else {
+                state.forEach((el, i) => {
+                    if (el.id === action.payload.id) {
+                        state[i].qty = action.payload.qty
+                    }
+                })
+            }
             window.localStorage.setItem("yarnie__cart", JSON.stringify(state))
         },
         /**
@@ -47,7 +58,7 @@ export const cartSlice = createSlice({
        emptyCart(state) {
            state.splice(0)
            toast.success(`Checkout Successfully acknowledged. We will get back to you as soon as we can`, { id: `123${state.length}`, })
-           console.log('state', state)
+        //    console.log('state', state)
            window.localStorage.setItem("yarnie__cart", JSON.stringify(state))
         },
         /**

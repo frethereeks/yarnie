@@ -1,7 +1,6 @@
 "use client"
 
-import React, { ChangeEvent, FormEvent, useRef, useState } from 'react';
-import { GrSend } from "react-icons/gr";
+import React from 'react';
 import toast from 'react-hot-toast';
 import { useForm } from 'antd/es/form/Form';
 import { Form, Input, InputNumber } from 'antd';
@@ -17,24 +16,21 @@ type TFormProps = {
 
 export default function ContactForm() {
     const [form] = useForm<TFormProps>()
-    const formRef = useRef<HTMLFormElement | null>(null)
-    const [inputs, setInputs] = useState({
-        firstname: "",
-        lastname: "",
-        email: "",
-        phone: "",
-        message: ""
-    })
-
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    }
+    // const formRef = useRef<HTMLFormElement | null>(null)
+    // const [inputs, setInputs] = useState({
+    //     firstname: "",
+    //     lastname: "",
+    //     email: "",
+    //     phone: "",
+    //     message: ""
+    // })
 
     const handleSubmit = async (data: TFormProps) => {
         try {
             // const sendInputs = await Form
+            console.log('data', data)
             form.resetFields()
-            toast.success(`Thank you for your message ${inputs.firstname}. We will treat it as important`, { id: "123", duration: 3000 })
+            toast.success(`Thank you for your message ${data.firstname}. We will treat it as important`, { id: "123", duration: 3000 })
         } catch (error) {
             console.log({ error })
             toast.error(`Something went wrong. Please, try again`, { id: "123", duration: 3000 })

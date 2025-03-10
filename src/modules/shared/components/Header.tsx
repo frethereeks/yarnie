@@ -33,7 +33,7 @@ export default function Header() {
       </aside>
       <aside className={`px-4 py-2 relative z-40 bg-white ${headerFixed ? 'shadow-[0_0_15px_-4px_#0003]' : ''}`}>
         <div className="md:container mx-auto flex justify-betweeen items-center gap-4">
-          <Link href={appRoutePaths.home} className='relative border w-max flex after:absolute after:w-full after:h-[1px] after:bg-primary after:rounded-md after:rotate-12 after:left-0 after:top-1/2 after:-translate-y-1/2 p-2'>
+          <Link href={appRoutePaths.home} className='relative w-max flex after:absolute after:w-full after:h-[1px] after:bg-primary after:rounded-md after:rotate-12 after:left-0 after:top-1/2 after:-translate-y-1/2 p-2'>
             <p className="text-3xl md:text-5xl text-secondary relative rotate-12 z-30 font-[cursive]">T</p>
             <p className="text-3xl md:text-5xl text-secondary relative rotate-12 font-[cursive]">Y</p>
           </Link>

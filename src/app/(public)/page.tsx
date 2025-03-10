@@ -2,7 +2,8 @@
 // import FakeGraph from "@/components/FakeGraph";
 // import FakeSection from "@/components/FakeSection";
 import { ASSETS_URL } from "@/assets";
-import { yarnData } from "@/data";
+import { shopData, yarnData } from "@/data";
+import { ProductCard } from "@/modules/shared";
 import { appRoutePaths } from "@/routes/paths";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -45,15 +46,9 @@ export default async function Home() {
               <Link href={appRoutePaths.shop} className="text-xsmall">View all products</Link>
             </div>
             <div className="grid grid-cols-3 gap-2 md:gap-6">
-              <div className="relative h-40 md:h-60 bg-border overflow-hidden rounded-sm md:rounded-md">
-                <Image src={ASSETS_URL['crochet_beach_bag_pattern']} alt='crochet_beach_bag_pattern' className="object-center object-cover z-20" fill />
-              </div>
-              <div className="relative h-40 md:h-60 bg-border overflow-hidden rounded-sm md:rounded-md">
-                <Image src={ASSETS_URL['surene_palvie_plate']} alt='surene_palvie_plate' className="object-center object-cover z-20" fill />
-              </div>
-              <div className="relative h-40 md:h-60 bg-border overflow-hidden rounded-sm md:rounded-md">
-                <Image src={ASSETS_URL['surene_palvie_loom']} alt='surene_palvie_loom' className="object-center object-cover z-20" fill />
-              </div>
+              {
+                shopData.filter(el => el.popular).map(product => (<ProductCard key={product.id} {...product} />))
+              }
             </div>
           </div>
         </section>
@@ -68,7 +63,7 @@ export default async function Home() {
                 </div>
                 <div className="flex-1 relative bg-transparent rounded-xl min-h-60 row-start-1 md:row-span-2 grid place-items-center">
                   <div className={`h-56 w-56 md:w-72 md:h-72 mx-auto grid place-items-center rounded-full relative before:absolute before:w-[120%] before:h-[120%] before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full ${i % 2 === 0 ? 'before:bg-[#e6e6e6]' : 'before:bg-sky-200'}`}>
-                    <Image src={yarn.image} alt={yarn.image.toString()} className="object-center object-cover z-20 rounded-full" fill />
+                    <Image src={yarn.image} alt={yarn.image.toString()} className="object-bottom object-contain z-20 rounded-full" fill />
                   </div>
                 </div>
               </aside>

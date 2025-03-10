@@ -9,9 +9,6 @@ import { sideBarLinks } from '@/data/sideBarLinks'
 import { appRoutePaths } from '@/routes/paths'
 import { redirect, usePathname } from 'next/navigation'
 import { signOut } from 'next-auth/react'
-import Image from 'next/image'
-import { ASSETS_URL } from '@/constants'
-
 const { Content, Header, Sider } = Layout
 
 export default function DashLayout({ children, image }: { children: React.ReactNode, image: React.ReactNode }) {
@@ -49,11 +46,9 @@ export default function DashLayout({ children, image }: { children: React.ReactN
                     className='flex flex-col pt-4'
                 >
                     <div className="flex lg:justify-center items-center flex-shrink-0 relative after:absolute after:h-[.05rem] after:w-[90%] after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:bg-slate-200 p-4">
-                        <Link href={appRoutePaths.home} className="flex-1 flex lg:justify-center items-center flex-shrink-0">
-                            <aside className="relative overflow-hidden bg-transparent rounded-xl w-6 lg:w-10 h-8">
-                                <Image src={ASSETS_URL["logo"]} alt={"logo"} fill className={`w-full h-full rounded-xl absolute object-cover object-center flex-shrink-0 flex`} />
-                            </aside>
-                            <h1 className='text-primary text-lg md:text-xl lg:text-2xl font-medium font-eugusto leading-none'>BC<span className='text-secondary'>Lounge</span></h1>
+                        <Link href={appRoutePaths.home} className='relative border w-max flex after:absolute after:w-full after:h-[1px] after:bg-primary after:rounded-md after:rotate-12 after:left-0 after:top-1/2 after:-translate-y-1/2 p-2'>
+                            <p className="text-3xl md:text-5xl text-secondary relative rotate-12 z-30 font-[cursive]">T</p>
+                            <p className="text-3xl md:text-5xl text-secondary relative rotate-12 font-[cursive]">Y</p>
                         </Link>
                     </div>
                     <div className='sticky top-0 left-0 h-full p-4 bg-white flex-1 flex flex-col justify-between gap-10'>

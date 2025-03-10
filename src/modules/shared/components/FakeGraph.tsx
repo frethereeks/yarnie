@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 import { Button, Tooltip, Select } from 'antd';
-import { Bar, BarConfig, Pie, Line, LineConfig, } from '@ant-design/charts';
+import { Bar, Pie, Line, LineConfig, } from '@ant-design/charts';
 import { THEME_COLOR } from '@/config/theme';
 
 export default function FakeGraph() {

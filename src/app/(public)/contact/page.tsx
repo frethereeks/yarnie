@@ -1,4 +1,3 @@
-import { appRoutePaths } from '@/routes/paths'
 import Link from 'next/link'
 // import { ContactForm } from '@/components';
 import { Metadata } from 'next';

@@ -1,5 +1,7 @@
 // import { getPageMenu } from '@/action'
 import { ASSETS_URL } from '@/assets';
+import { shopData } from '@/data';
+import { ProductCard } from '@/modules/shared';
 import { appRoutePaths } from '@/routes/paths';
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -12,7 +14,7 @@ export const metadata: Metadata = {
   description: "The Yarnie is all about a crochet making, crochet making is the process of creating fabric or other similar items using a crochet hook to interlock loops of yarn, thread, or other materials. It's a versatile craft that can be used to make a wide variety of items, from clothing and accessories to home décor and toys.",
 };
 
-export default async function MenuPage() {
+export default async function ShopPage() {
   // const res = await getPageMenu()
   // const menu = res.data?.menu
   // const categories = res.data?.category
@@ -38,30 +40,9 @@ export default async function MenuPage() {
             </select>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-            <div className="relative h-40 md:h-60 bg-border overflow-hidden rounded-sm md:rounded-md group">
-              <Image src={ASSETS_URL['yarn_redblackcap']} alt='yarn_redblackcap' className="object-center object-cover z-20 group-hover:scale-110" fill />
-            </div>
-            <div className="relative h-40 md:h-60 bg-border overflow-hidden rounded-sm md:rounded-md group">
-              <Image src={ASSETS_URL['surene_palvie_plate']} alt='surene_palvie_plate' className="object-center object-cover z-20 group-hover:scale-110" fill />
-            </div>
-            <div className="relative h-40 md:h-60 bg-border overflow-hidden rounded-sm md:rounded-md group">
-              <Image src={ASSETS_URL['yarn_redcartoncap']} alt='yarn_redcartoncap' className="object-center object-cover z-20 group-hover:scale-110" fill />
-            </div>
-            <div className="relative h-40 md:h-60 bg-border overflow-hidden rounded-sm md:rounded-md group">
-              <Image src={ASSETS_URL['surene_palvie_loom']} alt='surene_palvie_loom' className="object-center object-cover z-20 group-hover:scale-110" fill />
-            </div>
-            <div className="relative h-40 md:h-60 bg-border overflow-hidden rounded-sm md:rounded-md group">
-              <Image src={ASSETS_URL['yarn_underwear']} alt='yarn_underwear' className="object-center object-cover z-20 group-hover:scale-110" fill />
-            </div>
-            <div className="relative h-40 md:h-60 bg-border overflow-hidden rounded-sm md:rounded-md group">
-              <Image src={ASSETS_URL['yarn_pinkwhite_babywear']} alt='yarn_pinkwhite_babywear' className="object-center object-cover z-20 group-hover:scale-110" fill />
-            </div>
-            <div className="relative h-40 md:h-60 bg-border overflow-hidden rounded-sm md:rounded-md group">
-              <Image src={ASSETS_URL['yarn_assortedcolors']} alt='yarn_assortedcolors' className="object-center object-cover z-20 group-hover:scale-110" fill />
-            </div>
-            <div className="relative h-40 md:h-60 bg-border overflow-hidden rounded-sm md:rounded-md group">
-              <Image src={ASSETS_URL['crochet_beach_bag_pattern']} alt='crochet_beach_bag_pattern' className="object-center object-cover z-20 group-hover:scale-110" fill />
-            </div>
+            {
+              shopData.map(product => (<ProductCard key={product.id} {...product} />))
+            }
           </div>
         </div>
       </section>

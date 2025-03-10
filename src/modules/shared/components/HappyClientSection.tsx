@@ -1,6 +1,6 @@
 import React from 'react'
 import { Para3, Para1, Header2, } from '@/components/ui/Typography'
-import AppSlider from './ui/AppSlider'
+import AppSlider from '../../../components/ui/AppSlider'
 import { happyClients } from '@/data'
 // import { ASSETS_URL } from '@/constants'
 // import Image from 'next/image'
