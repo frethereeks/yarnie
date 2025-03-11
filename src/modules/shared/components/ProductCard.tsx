@@ -30,7 +30,7 @@ export default function ProductCard(item: TShopDataProps) {
                 <Image src={image} alt={name} className="object-center object-cover z-20 group-hover:scale-110" fill />
             </Link>
             <div className="flex-1 flex flex-col justify-between">
-                <h4 className="text-base md:text-lg text-primary leading-tight font-sofia font-bold">{name}</h4>
+                <h4 className="text-base md:text-lg text-primary leading-tight font-montserrat font-bold">{name}</h4>
                 <div className="flex justify-between items-center gap-4">
                     <p className="flex-1 text-sm md:text-base text-primary font-semibold">&#8358;{price.toLocaleString()}</p>
                     {

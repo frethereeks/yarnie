@@ -21,9 +21,13 @@ export default function Header() {
       else {
         setHeaderFixed(false)
       }
-      console.log('scrollY', window.scrollY)
+      return () => {
+        setHeaderFixed(false);
+        window.scrollTo(0, 0)
+        setNavbarOpen(false);
+      }
     }
-  }, [headerFixed])
+  }, [])
 
   return (
     <header className='flex flex-col bg-white sticky top-0 left-0 w-full z-40'>

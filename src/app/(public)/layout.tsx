@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat, Sofia_Sans } from "next/font/google"
 import "../globals.css";
+import 'aos/dist/aos.css';
 
 import { Toaster } from "react-hot-toast"
 import { Provider } from "@/provider/SessionProvider";
@@ -25,7 +26,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${montserrat.variable} ${sofia.variable} antialiased font-nunito`}>
+      <body className={`${montserrat.variable} ${sofia.variable} antialiased font-montserrat`}>
         <Provider>
           <AntdRegistry>
             <ThemeProvider>

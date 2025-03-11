@@ -34,7 +34,7 @@ export default function Footer() {
                 </div>
             </section>
             <section className="py-6 px-4 bg-primary relative">
-                <div className="container mx-auto grid grid-cols-2 md:grid-cols-3 pt-4 pb-10">
+                <div className="container mx-auto grid md:grid-cols-2 lg:grid-cols-3 pt-4 pb-10">
                     <div className="flex flex-col w-max">
                         <Link href={appRoutePaths.home} className='relative w-max flex after:absolute after:w-full after:h-[1px] after:bg-white after:rounded-md after:rotate-12 after:left-0 after:top-1/2 after:-translate-y-1/2 p-2'>
                             <p className="text-3xl md:text-5xl text-secondary relative rotate-12 z-30 font-[cursive]">T</p>
@@ -50,7 +50,7 @@ export default function Footer() {
                         }
                         <Link key={"802497234"} href={appRoutePaths.sitemap} className={`relative flex px-4 py-2 text-white hover:text-secondary text-base font-bold`}>Sitemap</Link>
                     </div>
-                    <div className="col-span-2 md:col-span-1 flex flex-col gap-4 text-white">
+                    <div className="md:col-span-2 lg:col-span-1 flex flex-col gap-4 text-white">
                         <div className="flex items-center gap-1">
                             <div className="flex-shrink-0 grid place-items-center p-2">
                                 <HiPhoneIncoming className="text-xl text-inherit cursor-pointer" />
