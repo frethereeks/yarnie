@@ -1,21 +1,18 @@
 import React from 'react'
 import SignupForm from './SignupForm'
 // import Image from 'next/image'
-// import { edimcs_bookkeeping } from '@/assets/images'
 import { Metadata } from 'next'
-import bcryptjs from "bcryptjs"
+// import bcryptjs from "bcryptjs"
 
 export const metadata: Metadata = {
-  title: "BC Lounge Restaurant :: Signup",
+  title: "The Yarnie - Signup",
   description: "Food for the body is not enough. There must be food for the soul.",
 };
 
 export default async function SignupPage() {
-  
-  
-      const salt = await bcryptjs.genSalt(10)
-      const password = await bcryptjs.hash("Fredericks", salt)
-      console.log({ password })
+      // const salt = await bcryptjs.genSalt(10)
+      // const password = await bcryptjs.hash("Fredericks", salt)
+      // console.log({ password })
 
   return (
     <main className="flex flex-col relative">

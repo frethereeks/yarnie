@@ -7,9 +7,9 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { BsPencil } from "react-icons/bs";
 import { AddUser } from './components';
 import { USER_COLUMNS } from './columns';
-import { DeleteModal } from '@/components';
 import { ItemType } from 'antd/es/menu/interface';
 import { $Enums } from '@prisma/client';
+import { DeleteModal } from '@/components';
 
 type PageProps = {
     data: TUserProps[],

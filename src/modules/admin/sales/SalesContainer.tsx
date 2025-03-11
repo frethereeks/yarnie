@@ -1,5 +1,4 @@
 "use client"
-
 import { TSaleProps } from '@/types'
 import React, { useState } from 'react'
 import { Modal, Table, TableProps } from 'antd'
@@ -12,7 +11,7 @@ import { $Enums } from '@prisma/client';
 
 type PageProps = {
     data: TSaleProps[] | undefined,
-        role: $Enums.Role
+    role: $Enums.Role
 }
 
 export default function SalesContainer({ data, role }: PageProps) {

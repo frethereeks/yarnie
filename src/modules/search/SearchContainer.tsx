@@ -1,8 +1,9 @@
 "use client"
-import { MenuCard } from '@/components'
+// import { MenuCard } from '@/components'
 import { DEFAULT_PAGE_SIZE } from '@/constants'
 import { Menu } from '@prisma/client'
 import React, { useState } from 'react'
+// import { ProductCard } from '../shared'
 
 export default function SearchContainer({ search }: { search?: Menu[] }) {
     const [data, setData] = useState<Menu[]>(search ?? [])
@@ -18,11 +19,11 @@ export default function SearchContainer({ search }: { search?: Menu[] }) {
             <section className="relative py-10 lg:py-20 px-4 text-center bg-light-secondary shadow-lg shadow-text/10">
                 <div className="container mx-auto flex flex-col items-center gap-2 md:gap-3">
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-center">
-                        {
+                        {/* {
                             data?.slice((currentPage * DEFAULT_PAGE_SIZE), (DEFAULT_PAGE_SIZE + ((currentPage * DEFAULT_PAGE_SIZE)))).map(food => (
-                                <MenuCard key={food.id} {...food} />
+                                <ProductCard key={food.id} {...food} />
                             ))
-                        }
+                        } */}
                     </div>
                     <div className="flex justify-end gap-2">
                         {
