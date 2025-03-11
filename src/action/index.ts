@@ -599,7 +599,7 @@ export const updateStatus = async (payload: { id: string, status: string }, tabl
             default: return null;
         }
         // table === "user" ? revalidatePath(appRoutePaths.adminuser) :
-        // table === "menu" ? revalidatePath(appRoutePaths.adminmenu) :
+        // table === "menu" ? revalidatePath(appRoutePaths.adminshop) :
         // table === "category" ? revalidatePath(appRoutePaths.admindashboard) :
         // table === "contact" ? revalidatePath(appRoutePaths.admincontact) :
         // revalidatePath(appRoutePaths.adminsales)

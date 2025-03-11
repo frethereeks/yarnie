@@ -32,7 +32,7 @@ export const sideBarLinks: SidebarProps[] = [
         id: '8q2s03x5068q23',
         title: 'Menu',
         icon: <LuUtensilsCrossed />,
-        link: appRoutePaths.adminmenu,
+        link: appRoutePaths.adminshop,
     },
     {
         id: '8q2s03x5068q24',
