@@ -4,7 +4,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 // import { CartProp } from "../../types";
 import toast from "react-hot-toast";
 
-const initialState: CartProp[] = JSON.parse(window.localStorage.getItem("yarnie__cart")!) as unknown as CartProp[] || []
+// const initialState: CartProp[] = JSON.parse(window.localStorage.getItem("yarnie__cart")!) as unknown as CartProp[] || []
+const initialState: CartProp[] =  []
 
 export const cartSlice = createSlice({
     name: "cart",
@@ -23,7 +24,7 @@ export const cartSlice = createSlice({
             else {
                 state.unshift(action.payload)
                 toast.success(`${action.payload.name} added to cart`, { id: "123" })
-                window.localStorage.setItem("yarnie__cart", JSON.stringify(state))
+                // window.localStorage.setItem("yarnie__cart", JSON.stringify(state))
             }
         },
         /**
@@ -40,7 +41,7 @@ export const cartSlice = createSlice({
                         state.splice(i, 1)
                     }
                 })
-                toast.error(`Item removed from cart`, { id: `123${state.length}`, })
+                toast.error(`Item removed from cart`, { id: `123`, })
             }
             else {
                 state.forEach((el, i) => {
@@ -49,7 +50,7 @@ export const cartSlice = createSlice({
                     }
                 })
             }
-            window.localStorage.setItem("yarnie__cart", JSON.stringify(state))
+            // window.localStorage.setItem("yarnie__cart", JSON.stringify(state))
         },
         /**
          * This reducer empties the cart item selected (to indicate checkout)
@@ -57,9 +58,9 @@ export const cartSlice = createSlice({
         */
        emptyCart(state) {
            state.splice(0)
-           toast.success(`Checkout Successfully acknowledged. We will get back to you as soon as we can`, { id: `123${state.length}`, })
+           toast.success(`Checkout Successfully acknowledged. We will get back to you as soon as we can`, { id: `123`, })
         //    console.log('state', state)
-           window.localStorage.setItem("yarnie__cart", JSON.stringify(state))
+        //    window.localStorage.setItem("yarnie__cart", JSON.stringify(state))
         },
         /**
          * This reducer deletes the cart item selected (whose CartId is passed to the function)
@@ -72,7 +73,7 @@ export const cartSlice = createSlice({
                     state.splice(i, 1)
                 }
             })
-            window.localStorage.setItem("yarnie__cart", JSON.stringify(state))
+            // window.localStorage.setItem("yarnie__cart", JSON.stringify(state))
         },
     }
 })

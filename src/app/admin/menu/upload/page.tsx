@@ -2,7 +2,7 @@
 import { Header3 } from '@/components/ui/Typography'
 import React from 'react'
 import { Form, Input, InputNumber } from "antd"
-import { CldUploadWidget } from 'next-cloudinary'
+// import { CldUploadWidget } from 'next-cloudinary'
 
 
 type TFormDataProps = {
@@ -64,13 +64,13 @@ export default function AdminUploadPage() {
                         </div>
                         <div className="flex flex-col gap-2">
                             <label htmlFor="image" className="text-slate-400 text-sm">Food Description</label>
-                            <Form.Item<TFormDataProps> name="image">
+                            {/* <Form.Item<TFormDataProps> name="image">
                                 <CldUploadWidget signatureEndpoint={"/api/sign-image"}>
                                     {({ open }) => {
                                         return <button onClick={() => open()} className="py-2 px-6 bg-primary text-white cursor-pointer">Upload File</button>
                                     }}
                                 </CldUploadWidget>
-                            </Form.Item>
+                            </Form.Item> */}
                         </div>
                         <button className="py-2 px-6 rounded-md cursor-pointer bg-primary text-white">Create Food</button>
                     </Form>
