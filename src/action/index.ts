@@ -180,7 +180,7 @@ export const createMenu = async (data: FormData) => {
                 name, slug, price, image, description, categoryId, userId: user.id, status: status as $Enums.FoodStatus, popular: popular === "on" ? true : false
             }
         })
-        revalidatePath(appRoutePaths.adminmenu)
+        revalidatePath(appRoutePaths.adminshop)
         return { error: false, message: `New Menu Record Created Successfully.`, }
     } catch (error) {
         console.log({ error })
@@ -555,7 +555,7 @@ export const updateMenu = async (data: FormData) => {
             },
             where: { id }
         })
-        revalidatePath(appRoutePaths.adminmenu)
+        revalidatePath(appRoutePaths.adminshop)
         return { error: false, message: `Menu record updated successfully.`, }
     } catch (error) {
         console.log({ error })
