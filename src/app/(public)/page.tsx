@@ -57,7 +57,7 @@ export default async function Home() {
           <div className="container mx-auto flex flex-col gap-4 md:gap-8 py-10 md:py-20">
             {
               yarnData.slice(0,2).map((yarn,i) => (
-                <aside data-aos-duration="2000" data-aos-delay={i*500} data-aos="fade-left" key={yarn.id} className={`flex ${i % 2 === 0 ? 'flex-col-reverse md:flex-row-reverse' : 'flex-col md:flex-row'} gap-4 md:gap-6 w-full max-w-4xl mx-auto`}>
+                <aside key={yarn.id} className={`flex ${i % 2 === 0 ? 'flex-col-reverse md:flex-row-reverse' : 'flex-col md:flex-row'} gap-4 md:gap-6 w-full max-w-4xl mx-auto`}>
                 <div className="flex-1 relative z-10 flex flex-col justify-center gap-4 py-5 md:py-10 md:px-4">
                   <h4 className="text-3xl md:text-3xl text-secondary text-center md:text-justify font-bold font-serif lg:max-w-md">{yarn.name}</h4>
                   <p className="font-montserrat text-text text-base text-center md:text-justify leading-loose lg:max-w-md">{yarn.description}</p>
@@ -70,7 +70,7 @@ export default async function Home() {
               </aside>
               ))
             }
-            <Link data-aos="fade-up" data-aos-delay="2000" data-aos-duration="1500" href={appRoutePaths.about} className="border-2 border-primary rounded-md w-max mx-auto px-6 py-2 text-base text-primary bg-white hover:bg-primary hover:text-white">Read more</Link>
+            <Link href={appRoutePaths.about} className="border-2 border-primary rounded-md w-max mx-auto px-6 py-2 text-base text-primary bg-white hover:bg-primary hover:text-white">Read more</Link>
           </div>
         </section>
         <section className="relative py-20 md:py-40 px-4 bg-primary">
@@ -80,12 +80,6 @@ export default async function Home() {
             <Link href={appRoutePaths.about} className="border-2 border-white rounded-md w-max mx-auto px-6 py-2 text-base text-white bg-transparent hover:bg-white hover:text-primary">Check it out</Link>
           </div>
         </section>
-
-              {/* <FakeGraph /> */}
-        {/* <PopularSection data={menu} />
-        <AboutSection />
-        <HappyClientSection /> */}
-        {/* <Newsletter /> */}
       </main>
     </>
   );
