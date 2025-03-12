@@ -25,7 +25,7 @@ export default function ProductCard(item: TShopDataProps) {
     }
 
     return (
-        <figure className="shadow-[0_0_15px_4px_#0001] flex flex-col gap-2 group bg-white p-4 pt-3 rounded-sm md:rounded-md">
+        <figure className="shadow-[0_0_15px_4px_#0001] flex flex-col gap-2 group bg-white p-2 sm:p-4 sm:pt-3 rounded-sm md:rounded-md">
             <Link href={`${appRoutePaths.shop}/${slug}`} className="relative h-40 md:h-60 bg-border overflow-hidden rounded-md md:rounded-lg">
                 <Image src={image} alt={name} className="object-center object-cover z-20 group-hover:scale-110" fill />
             </Link>

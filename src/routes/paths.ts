@@ -36,7 +36,7 @@ export const publicRoutes = {
     singleShop: (id: string) => `/shop/${id}`,
     signin: "/auth/login",
     signup: "/auth/register",
-    sitemap: "/sitemap",
+    sitemap: "/sitemap.xml",
     verify: "/auth/verify",
     logout: "/auth/logout",
 }

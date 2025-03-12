@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat, Sofia_Sans } from "next/font/google"
 import "../globals.css";
-import 'aos/dist/aos.css';
 
 import { Toaster } from "react-hot-toast"
 import { Provider } from "@/provider/SessionProvider";
