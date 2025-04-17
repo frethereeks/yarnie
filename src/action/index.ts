@@ -6,7 +6,7 @@ import { authOptions } from "@/lib/authOptions";
 import prisma from "@/lib/prisma";
 import { appRoutePaths } from "@/routes/paths";
 import { TCategory, TCategoryProps, TMenuProps, TSaleProps, TUserProps } from "@/types";
-import { $Enums, Menu } from "@prisma/client";
+import { $Enums, YNProduct } from "@prisma/client";
 import bcryptjs from "bcryptjs"
 import { randomUUID } from "crypto";
 import { getServerSession } from "next-auth";
@@ -17,7 +17,7 @@ import { redirect } from "next/navigation";
 export const fetchUser = async () => {
     const session = await getServerSession(authOptions);
     const user = session?.user;
-    const data = await prisma.user.findFirst({
+    const data = await prisma.yNUser.findFirst({
         where: {
             email: user?.email?.toLowerCase() as string
         },
@@ -66,7 +66,7 @@ export const createUser = async (data: FormData) => {
     ]
     const image = Math.random() > 0.8 ? imageList[0] : Math.random() > 0.6 ? imageList[1] : Math.random() > 0.4 ? imageList[2] : Math.random() > 0.2 ? imageList[3] : imageList[4]
     // check duplicates
-    const alreadyExists = await prisma.user.findFirst({
+    const alreadyExists = await prisma.yNUser.findFirst({
         where: { email: email.toLowerCase(), }
     })
     if (alreadyExists) {
@@ -75,7 +75,7 @@ export const createUser = async (data: FormData) => {
         }
     }
     try {
-        await prisma.user.create({
+        await prisma.yNUser.create({
             data: {
                 firstname, lastname, email, password, role, image, token: ""
             }
@@ -91,7 +91,7 @@ export const createUser = async (data: FormData) => {
 export const createSale = async (data: FormData) => {
     const user = await fetchUser()
     const { alcohol, drink, food, createdAt } = saleData(data)
-    const alreadyExists = await prisma.sale.findFirst({
+    const alreadyExists = await prisma.yNSale.findFirst({
         where: { createdAt: new Date(createdAt).toISOString(), }
     })
     if (alreadyExists) {
@@ -100,7 +100,7 @@ export const createSale = async (data: FormData) => {
         }
     }
     try {
-        await prisma.sale.create({
+        await prisma.yNSale.create({
             data: {
                 alcohol, drink, food, createdAt: new Date(createdAt).toISOString(), userId: user.id
             }
@@ -110,14 +110,13 @@ export const createSale = async (data: FormData) => {
         console.log({ error })
         return { error: true, message: `Unable to create this record`, }
     }
-
 }
 
 export const createCategory = async (data: FormData) => {
     const user = await fetchUser()
     const name = data?.get("name")?.valueOf() as string;
     // check duplicates
-    const alreadyExists = await prisma.category.findFirst({
+    const alreadyExists = await prisma.yNCategory.findFirst({
         where: { name: name.toLowerCase(), }
     })
     if (alreadyExists) {
@@ -126,7 +125,7 @@ export const createCategory = async (data: FormData) => {
         }
     }
     try {
-        await prisma.category.create({
+        await prisma.yNCategory.create({
             data: {
                 name, userId: user.id
             }
@@ -146,7 +145,7 @@ export const createMessage = async (data: FormData) => {
     const phone = data?.get("phone")?.valueOf() as string;
 
     try {
-        await prisma.contact.create({
+        await prisma.yNContact.create({
             data: {
                 fullname, email, message, phone
             }
@@ -164,7 +163,7 @@ export const createMenu = async (data: FormData) => {
     const { name, price, image, description, categoryId, status, popular } = menuData(data)
     const slug = generateSlug(name)
     // check duplicates
-    const alreadyExists = await prisma.menu.findFirst({
+    const alreadyExists = await prisma.yNProduct.findFirst({
         where: {
             AND: [{ name: name.toLowerCase(), categoryId }]
         }
@@ -175,13 +174,13 @@ export const createMenu = async (data: FormData) => {
         }
     }
     try {
-        await prisma.menu.create({
+        await prisma.yNProduct.create({
             data: {
                 name, slug, price, image, description, categoryId, userId: user.id, status: status as $Enums.FoodStatus, popular: popular === "on" ? true : false
             }
         })
         revalidatePath(appRoutePaths.adminshop)
-        return { error: false, message: `New Menu Record Created Successfully.`, }
+        return { error: false, message: `New YNProduct Record Created Successfully.`, }
     } catch (error) {
         console.log({ error })
         return { error: true, message: `Unable to create this menu record`, }
@@ -190,7 +189,7 @@ export const createMenu = async (data: FormData) => {
 
 // ACCOUNT RESET
 export const handleReset = async (email: string) => {
-    const validMail = await prisma.user.findFirst({ where: { email } })
+    const validMail = await prisma.yNUser.findFirst({ where: { email } })
     if (!validMail) return { error: true, message: `We do not have a member with this email...Please, confirm and try again` };
     try {
         const token = randomUUID()
@@ -229,7 +228,7 @@ export const handleReset = async (email: string) => {
         //         return { error: true, message: `Something went wrong. We could not send the mail...Please, try again` };
         //     }
         // })
-        // await prisma.user.update({
+        // await prisma.yNUser.update({
         //     where: { email },
         //     data: { token }
         // })
@@ -246,10 +245,10 @@ export const handlePasswordReset = async (data: FormData) => {
     const plainPassword = data.get("password")?.valueOf() as string
     const salt = await bcryptjs.genSalt(10)
     const password = await bcryptjs.hash(plainPassword, salt)
-    const validMail = await prisma.user.findFirst({ where: { email } })
+    const validMail = await prisma.yNUser.findFirst({ where: { email } })
     if (!validMail) return { error: true, message: `We do not have a member with this email...Please, confirm and try again` };
     try {
-        await prisma.user.update({
+        await prisma.yNUser.update({
             where: { email },
             data: { password, token: "" }
         })
@@ -263,7 +262,7 @@ export const handlePasswordReset = async (data: FormData) => {
 
 export const handleTokenVerification = async (email: string, token: string) => {
     try {
-        const validMail = await prisma.user.findFirst({ where: { email, token } })
+        const validMail = await prisma.yNUser.findFirst({ where: { email, token } })
         if (!validMail) return { error: true, message: `We do not have an account with these details...Perhaps, this is an old link` };
         else return { error: false, message: `Success! Please, complete the process by choosing a new password` };
     } catch (error) {
@@ -276,7 +275,7 @@ export const handleTokenVerification = async (email: string, token: string) => {
 export const fetchUsers = async () => {
     const user = await fetchUser()
     try {
-        let data = await prisma.user.findMany({
+        let data = await prisma.yNUser.findMany({
             include: {
                 category: { select: { id: true } },
                 menu: { select: { id: true } }
@@ -294,7 +293,7 @@ export const fetchUsers = async () => {
 export const fetchSales = async () => {
     const user = await fetchUser()
     try {
-        const data = await prisma.sale.findMany({
+        const data = await prisma.yNSale.findMany({
             include: {
                 user: {
                     select: {
@@ -315,10 +314,10 @@ export const fetchDashboardData = async () => {
     const user = await fetchUser()
     try {
         const [sales, menu, users, category] = await prisma.$transaction([
-            prisma.sale.findMany({ select: { alcohol: true, drink: true, food: true } }),
-            prisma.menu.findMany({ select: { id: true, status: true, price: true } }),
-            prisma.user.findMany({ select: { id: true, status: true, role: true } }),
-            prisma.category.findMany({
+            prisma.yNSale.findMany({ select: { alcohol: true, drink: true, food: true } }),
+            prisma.yNProduct.findMany({ select: { id: true, status: true, price: true } }),
+            prisma.yNUser.findMany({ select: { id: true, status: true, role: true } }),
+            prisma.yNCategory.findMany({
                 include: {
                     menu: { select: { id: true, name: true } },
                     user: { select: { firstname: true, lastname: true, id: true } },
@@ -336,7 +335,7 @@ export const fetchDashboardData = async () => {
 export const fetchMessage = async () => {
     const user = await fetchUser()
     try {
-        const data = await prisma.contact.findMany({
+        const data = await prisma.yNContact.findMany({
             orderBy: { createdAt: "desc" }
         })
         return { error: false, message: `Record Retrieved Successfully.`, data, role: user.role }
@@ -349,14 +348,14 @@ export const fetchMessage = async () => {
 export const fetchMenu = async () => {
     const user = await fetchUser()
     try {
-        const data = await prisma.menu.findMany({
+        const data = await prisma.yNProduct.findMany({
             include: {
                 category: { select: { name: true } },
                 user: { select: { firstname: true, lastname: true, id: true } },
             },
             orderBy: { createdAt: "desc" }
         }) as TMenuProps[]
-        const category = await prisma.category.findMany({
+        const category = await prisma.yNCategory.findMany({
             where: { status: "VISIBLE" },
         }) as TCategory[]
 
@@ -369,7 +368,7 @@ export const fetchMenu = async () => {
 
 export const fetchSearch = async (query: string) => {
     try {
-        const data = await prisma.menu.findMany({
+        const data = await prisma.yNProduct.findMany({
             where: {
                 OR: [
                     {
@@ -389,7 +388,7 @@ export const fetchSearch = async (query: string) => {
                 category: { select: { name: true } },
             },
             orderBy: { createdAt: "desc" }
-        }) as Menu[]
+        }) as YNProduct[]
         revalidatePath(appRoutePaths.search);
         return { error: false, message: `${data.length} result found.`, data }
     } catch (error) {
@@ -401,13 +400,13 @@ export const fetchSearch = async (query: string) => {
 // GET LOGICS FOR CLIENT SIDE
 export const getPageMenu = async () => {
     try {
-        const menu = await prisma.menu.findMany({
+        const menu = await prisma.yNProduct.findMany({
             include: {
                 category: { select: { name: true } },
             },
             orderBy: { createdAt: "desc" }
-        }) as Menu[]
-        const category = await prisma.category.findMany({
+        }) as YNProduct[]
+        const category = await prisma.yNCategory.findMany({
             where: { status: "VISIBLE" },
             include: {
                 menu: { select: { id: true, name: true } },
@@ -425,15 +424,15 @@ export const getPageMenu = async () => {
 export const getSinglePageMenu = async ({ slug }: { slug: string }) => {
     let similar;
     try {
-        const menu = await prisma.menu.findFirst({
+        const menu = await prisma.yNProduct.findFirst({
             where: { slug },
             include: {
                 category: { select: { name: true } },
             },
             orderBy: { createdAt: "desc" }
-        }) as (Menu & { category: { name: string } })
+        }) as (YNProduct & { category: { name: string } })
         if (menu) {
-            similar = await prisma.menu.findMany({
+            similar = await prisma.yNProduct.findMany({
                 where: {
                     categoryId: menu.categoryId
                 },
@@ -441,7 +440,7 @@ export const getSinglePageMenu = async ({ slug }: { slug: string }) => {
             })
         }
         else {
-            similar = await prisma.menu.findMany({
+            similar = await prisma.yNProduct.findMany({
                 take: 6
             })
         }
@@ -462,7 +461,7 @@ export const updateUser = async (data: FormData) => {
     const salt = await bcryptjs.genSalt(10)
     const password = await bcryptjs.hash(plainPassword, salt)
     // check duplicates
-    const alreadyExists = await prisma.user.findFirst({
+    const alreadyExists = await prisma.yNUser.findFirst({
         where: {
             id,
             NOT: [{ email: { contains: email.toLowerCase(), } }]
@@ -477,13 +476,13 @@ export const updateUser = async (data: FormData) => {
         const passwordMatched = await bcryptjs.compare(verifyPassword, user.password)
         if (passwordMatched) {
             if (plainPassword !== "") {
-                await prisma.user.update({
+                await prisma.yNUser.update({
                     data: { firstname, lastname, email, password, role, image, status, },
                     where: { id }
                 })
             }
             else {
-                await prisma.user.update({
+                await prisma.yNUser.update({
                     data: { firstname, lastname, email, role, image, status, },
                     where: { id }
                 })
@@ -505,7 +504,7 @@ export const updateSale = async (data: FormData) => {
     const { alcohol, drink, food, createdAt } = saleData(data)
     const id = data?.get("id")?.valueOf() as string;
 
-    const alreadyExists = await prisma.sale.findFirst({
+    const alreadyExists = await prisma.yNSale.findFirst({
         where: {
             createdAt: new Date(createdAt).toISOString(),
             NOT: [{ id }]
@@ -517,7 +516,7 @@ export const updateSale = async (data: FormData) => {
         }
     }
     try {
-        await prisma.sale.update({
+        await prisma.yNSale.update({
             data: {
                 alcohol, drink, food, createdAt: new Date(createdAt).toISOString(), userId: user.id
             },
@@ -537,7 +536,7 @@ export const updateMenu = async (data: FormData) => {
     const { name, price, image, description, categoryId, status, popular } = menuData(data)
     const slug = generateSlug(name)
     // check duplicates
-    const alreadyExists = await prisma.menu.findFirst({
+    const alreadyExists = await prisma.yNProduct.findFirst({
         where: {
             AND: [{ name: name.toLowerCase(), categoryId }],
             NOT: [{ id }]
@@ -549,14 +548,14 @@ export const updateMenu = async (data: FormData) => {
         }
     }
     try {
-        await prisma.menu.update({
+        await prisma.yNProduct.update({
             data: {
                 name, slug, price, image, description, categoryId, userId: user.id, status: status as $Enums.FoodStatus, popular: popular === "on" ? true : false
             },
             where: { id }
         })
         revalidatePath(appRoutePaths.adminshop)
-        return { error: false, message: `Menu record updated successfully.`, }
+        return { error: false, message: `YNProduct record updated successfully.`, }
     } catch (error) {
         console.log({ error })
         return { error: true, message: `Unable to update this menu record`, }
@@ -568,28 +567,28 @@ export const updateStatus = async (payload: { id: string, status: string }, tabl
     try {
         switch (table) {
             case "user": {
-                prisma.user.update({
+                prisma.yNUser.update({
                     data: { status: status as $Enums.Status },
                     where: { id: id }
                 })
             }
                 break;
             case "menu": {
-                prisma.menu.update({
+                prisma.yNProduct.update({
                     data: { status: status as $Enums.FoodStatus },
                     where: { id: id }
                 })
             }
                 break;
             case "contact": {
-                prisma.contact.update({
+                prisma.yNContact.update({
                     data: { status: status as $Enums.ContactStatus },
                     where: { id: id }
                 })
             }
                 break;
             case "category": {
-                prisma.category.update({
+                prisma.yNCategory.update({
                     data: { status: status as $Enums.FoodStatus },
                     where: { id: id }
                 })
@@ -616,7 +615,7 @@ export const updateCategory = async (data: FormData) => {
     const status = data?.get("status")?.valueOf() as $Enums.FoodStatus;
     const id = data?.get("id")?.valueOf() as string;
     // check duplicates
-    const alreadyExists = await prisma.category.findFirst({
+    const alreadyExists = await prisma.yNCategory.findFirst({
         where: {
             name: name.toLowerCase(),
             NOT: [{ id }]
@@ -628,7 +627,7 @@ export const updateCategory = async (data: FormData) => {
         }
     }
     try {
-        await prisma.category.update({
+        await prisma.yNCategory.update({
             data: {
                 name, userId: user.id, status
             },
@@ -650,7 +649,7 @@ export const deleteEntity = async (id: string, table: IDENTIFIED_TABLES) => {
         switch (table) {
             case "user": {
                 entityIDs.map(async (el) => {
-                    await prisma.user.delete({
+                    await prisma.yNUser.delete({
                         where: { id: el }
                     })
                 })
@@ -658,7 +657,7 @@ export const deleteEntity = async (id: string, table: IDENTIFIED_TABLES) => {
                 break;
             case "sales": {
                 entityIDs.map(async (el) => {
-                    await prisma.sale.delete({
+                    await prisma.yNSale.delete({
                         where: { id: el }
                     })
                 })
@@ -666,7 +665,7 @@ export const deleteEntity = async (id: string, table: IDENTIFIED_TABLES) => {
                 break;
             case "menu": {
                 entityIDs.map(async (el) => {
-                    await prisma.menu.delete({
+                    await prisma.yNProduct.delete({
                         where: { id: el }
                     })
                 })
@@ -674,7 +673,7 @@ export const deleteEntity = async (id: string, table: IDENTIFIED_TABLES) => {
                 break;
             case "contact": {
                 entityIDs.map(async (el) => {
-                    await prisma.contact.delete({
+                    await prisma.yNContact.delete({
                         where: { id: el }
                     })
                 })
@@ -683,14 +682,14 @@ export const deleteEntity = async (id: string, table: IDENTIFIED_TABLES) => {
             case "category": {
                 entityIDs.map(async (el) => {
                     // Find the "General" category
-                    const generalCategory = await prisma.category.findFirst({
+                    const generalCategory = await prisma.yNCategory.findFirst({
                         where: { name: 'General' },
                     });
-                    const updateMenu = prisma.menu.updateMany({
+                    const updateMenu = prisma.yNProduct.updateMany({
                         where: { categoryId: el },
                         data: { categoryId: generalCategory?.id }
                     })
-                    const deleteCategory = prisma.category.delete({
+                    const deleteCategory = prisma.yNCategory.delete({
                         where: { id: el },
                     })
                     await prisma.$transaction([updateMenu, deleteCategory])

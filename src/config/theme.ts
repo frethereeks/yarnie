@@ -62,11 +62,13 @@ export const appThemeConfig: ThemeConfig = {
             zIndexPopup: 80000,
         },
         Input: {
-            colorBgContainer: THEME_COLOR.background,
+            colorBgContainer: THEME_COLOR["light-grey"],
             hoverBorderColor: 'transparent',
             fontFamily: "helvetica",
             colorBorder: 'transparent',
             controlOutlineWidth: 0,
+            borderRadius: 0,
+            colorBgBase: THEME_COLOR["light-grey"]
         },
         InputNumber: {
             colorBgContainer: THEME_COLOR.background,

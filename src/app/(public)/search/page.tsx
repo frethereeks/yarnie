@@ -23,7 +23,7 @@ export default async function SearchPage({ searchParams }: PageProps) {
                 <div className="container mx-auto flex justify-center items-center gap-2">
                     <h4 className='heading-three text-light-secondary font-inspiration'>Your Search</h4>
                     <h2 className={`heading-two text-white capitalize font-medium font-eugusto max-w-xl`}>&ldquo;{q}&rdquo;</h2>
-                    <p className={`text-default leading-none font-urbanist text-light-secondary text-default max-w-xl`}>returned {res?.data?.length} results</p>
+                    <p className={`text-default leading-none font-montserrat text-light-secondary text-default max-w-xl`}>returned {res?.data?.length} results</p>
                 </div>
             </section>
             <SearchContainer search={res?.data} />

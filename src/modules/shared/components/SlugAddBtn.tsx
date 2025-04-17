@@ -30,10 +30,10 @@ export default function SlugAddBtn({ id, name, image, price }: Pick<TShopDataPro
                             <div className="w-14 flex-shrink-0 px-2 grid place-items-center text-text font-medium text-lg">{data.qty}</div>
                             <div onClick={() => handleChangeInCart({ id: data.id, qty: (data.qty + 1) })} className="select-none w-10 cursor-pointer flex-shrink-0 px-2 grid place-items-center font-bold text-lg text-text hover:bg-primary hover:text-white">+</div>
                         </div>
-                        <button onClick={() => handleChangeInCart({ id: data.id, qty: 0 })} className="group flex-shrink-0 flex items-center gap-3 w-max px-6 lg:px-8 py-2 lg:py-3 rounded-sm md:rounded-md bg-pink-600 text-white text-sm md:text-base cursor-pointer font-urbanist"><HiOutlineTrash className='flex-shrink-0 text-xl' /> Remove</button>
+                        <button onClick={() => handleChangeInCart({ id: data.id, qty: 0 })} className="group flex-shrink-0 flex items-center gap-3 w-max px-6 lg:px-8 py-2 lg:py-3 rounded-sm md:rounded-md bg-pink-600 text-white text-sm md:text-base cursor-pointer font-montserrat"><HiOutlineTrash className='flex-shrink-0 text-xl' /> Remove</button>
                     </>
                     :
-                    <button onClick={handleAddToCart} className="group flex-shrink-0 flex items-center gap-3 w-max px-6 lg:px-8 py-2 lg:py-3 rounded-sm md:rounded-md bg-slate-800 text-white text-lg md:text-xl cursor-pointer font-urbanist"><HiOutlineShoppingBag className="text-xl md:text-2xl group-hover:-translate-x-1.5 -mt-0.5" /> Add to Cart </button>
+                    <button onClick={handleAddToCart} className="group flex-shrink-0 flex items-center gap-3 w-max px-6 lg:px-8 py-2 lg:py-3 rounded-sm md:rounded-md bg-slate-800 text-white text-lg md:text-xl cursor-pointer font-montserrat"><HiOutlineShoppingBag className="text-xl md:text-2xl group-hover:-translate-x-1.5 -mt-0.5" /> Add to Cart </button>
             }
         </>
     )

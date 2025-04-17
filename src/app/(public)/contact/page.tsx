@@ -15,9 +15,9 @@ export default function ContactPage() {
     <main className="relative bg-background flex flex-col">
       <section className="relative py-10 lg:py-20 px-4 bg-white">
         <div className="container mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:px-8 lg:px-10 lg:justify-center">
-          <aside className="relative bg-primary text-white w-full max-w-lg rounded-md flex flex-col gap-4 md:gap-6 p-5 md:py-10">
+          <aside className="relative bg-border text-primary w-full max-w-lg rounded-md flex flex-col gap-4 md:gap-6 p-5 md:py-10">
             <div className="flex flex-col">
-              <h3 className='text-secondary text-3xl md:text-4xl font-serif font-bold'>Contact us</h3>
+              <h3 className='text-primary text-3xl md:text-4xl font-serif font-bold'>Contact us</h3>
               <p className="text-sm leading-loose">Fill out the form and our team will get back to you as soon as we can</p>
             </div>
             <div className="flex items-center gap-1">

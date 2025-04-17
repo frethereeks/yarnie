@@ -4,8 +4,8 @@
  */
 export const authRoutes = {
     // auth
-    signIn: "/auth/login",
-    signUp: "/auth/register",
+    signIn: "/auth/signin",
+    signUp: "/auth/signup",
 };
 
 /**

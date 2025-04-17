@@ -41,6 +41,7 @@ export default async function SingleFoodPage({ params: { slug } }: TPageParams) 
     // const similar = res?.data?.similar
     const data = shopData.find(el => el.slug === slug)
     const similar = shopData.filter(el => el.id !== data?.id)
+    
     return (
         // <main className='relative flex flex-col bg-[#d9d9d9]'>
         <main className='relative flex flex-col bg-white'>

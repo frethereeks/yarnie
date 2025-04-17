@@ -35,7 +35,7 @@ export default function DeleteModal({ closeModal, data, openModal, table }: { da
         <>
             <Modal open={openModal} onCancel={() => closeModal(prev => !prev)} onOk={handleDelete} okButtonProps={{ disabled: loading }} className="py-6">
                 <h3 className="heading-three py-4">Confirm Delete of {data?.length} Records</h3>
-                <p className="text-xsmall font-urbanist font-medium">Are you sure you want to proceed with this ? This action is not reversible</p>
+                <p className="text-xsmall font-montserrat font-medium">Are you sure you want to proceed with this ? This action is not reversible</p>
             </Modal>
         </>
     )

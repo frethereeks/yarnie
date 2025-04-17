@@ -2,6 +2,8 @@ import React from 'react'
 import SignupForm from './SignupForm'
 // import Image from 'next/image'
 import { Metadata } from 'next'
+import Image from 'next/image';
+import { ASSETS_URL } from '@/assets';
 // import bcryptjs from "bcryptjs"
 
 export const metadata: Metadata = {
@@ -15,20 +17,12 @@ export default async function SignupPage() {
       // console.log({ password })
 
   return (
-    <main className="flex flex-col relative">
-      <section className="flex flex-col relative bg-light-secondary">
-        <div className="container mx-auto flex flex-col-reverse md:flex-row relative z-10">
-          <aside className="bg-white py-5 sm:py-20 flex flex-2 flex-col justify-center relative overflow-hidden">
-            <div className="max-w-xl mx-auto w-full flex flex-col justify-center py-5 sm:px-5">
-              <SignupForm key={8347704} />
-            </div>
-          </aside>
-          <aside className="relative py-20 pt-36 p-5 flex-1 flex flex-col justify-center gap-4 bg-secondary/50" style={{ textShadow: '0 0 12px #0006' }}>
-            {/* <Image src={edimcs_bookkeeping} alt='edimcs loan page' fill={true} className='overlay left-0 top-0 object-cover opacity-40 blur-sm' /> */}
-            <h3 className="relative text-slate-50 text-4xl sm:text-5xl md:text-6xl leading-tight font-bold max-w-md sm:max-w-xl">Welcome to <span className="relative text-primary">Al-Ameen</span><span className="text-primary">.</span></h3>
-            <p className="relative text-slate-50 text-sm leading-loose max-w-lg">.</p>
-          </aside>
-        </div>
+    <main className='flex flex-col md:flex-row gap-4 lg:gap-8 md:min-h-screen'>
+      <section className="container mx-auto flex flex-col lg:flex-row gap-4 md:min-h-full bg-white">
+        <aside className="p-4 flex-1 hidden lg:flex flex-col gap-8 w-full lg:max-w-[40rem] py-40 relative bg-primary">
+          <Image src={ASSETS_URL["surene_palvie"]} alt='surene_palvie' className='object-cover object-top opacity-80' fill />
+        </aside>
+        <SignupForm />
       </section>
     </main>
   )

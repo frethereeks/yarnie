@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import { useForm } from 'antd/es/form/Form';
 import { Form, Input, InputNumber } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
+import { THEME_COLOR } from '@/config/theme';
 
 type TFormProps = {
     firstname: "",
@@ -41,41 +42,41 @@ export default function ContactForm() {
     return (
         <aside className="relative flex flex-col py-5">
             <Form form={form} onFinish={handleSubmit} className="grid sm:grid-cols-2 gap-x-2 md:gap-x-4 w-full bg-white p-4">
-                <div className="flex flex-col">
+                <div className="flex flex-col gap-1">
                     <label htmlFor="firstname" className="text-sm text-text">First Name</label>
                     <Form.Item<TFormProps> className="border" name="firstname">
                         <Input name="firstname" required placeholder="Sunday" />
                     </Form.Item>
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col gap-1">
                     <label htmlFor="lastname" className="text-sm text-text">Last Name</label>
                     <Form.Item<TFormProps> className="border" name="lastname">
                         <Input name="lastname" required placeholder="Anjorin" />
                     </Form.Item>
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col gap-1">
                     <label htmlFor="email" className="text-sm text-text">Email</label>
                     <Form.Item<TFormProps> className="border" name="email">
                         <Input type="email" name="email" required placeholder="sundy149@gmail.com" />
                     </Form.Item>
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col gap-1">
                     <label htmlFor="phone" className="text-sm text-text">Phone</label>
                     <Form.Item<TFormProps> className="border" name="phone">
-                        <div className="flex gap-1 px-4 text-text text-sm lg:text-base rounded-[3rem] bg-white">
-                            <div className="flex-shrink-0 grid place-items-center">+234</div>
+                        <div className="flex gap-1 text-text text-sm lg:text-base bg-light-grey">
+                            <div className="flex-shrink-0 grid place-items-center pl-4">+234</div>
                             {/* <input onChange={handleInputChange} type="phone" name="phone" id="phone" maxLength={10} required placeholder='Phone Number e.g. 7082592560' className="flex-1 py-3" /> */}
-                            <InputNumber name="phone" maxLength={10} placeholder='Phone Number e.g. 7082592560' className="flex-1 py-3" />
+                            <InputNumber name="phone" maxLength={10} placeholder='Phone Number e.g. 7082592560' className="flex-1 py-3 bg-light-grey" style={{background: THEME_COLOR['light-grey'], border: 0}} />
                         </div>
                     </Form.Item>
                 </div>
-                <div className="flex flex-col md:col-span-2">
+                <div className="flex flex-col gap-1 md:col-span-2">
                     <label htmlFor="message" className="text-sm text-text">Message</label>
                     <Form.Item<TFormProps> className="border" name="message">
-                        <TextArea rows={5} name="message" placeholder="Tell us. We always listen..." />
+                        <TextArea rows={5} name="message" placeholder="Tell us. We always listen..." className='resize-none' />
                     </Form.Item>
                 </div>
-                <button type='submit' className=" md:col-span-2 flex-shrink-0 flex items-center gap-2 w-max px-10 lg:px-8 py-2 lg:py-3 rounded-md bg-primary text-white text-lg md:text-xl cursor-pointer font-urbanist"> Send Message</button>
+                <button type='submit' className=" md:col-span-2 flex-shrink-0 flex items-center gap-2 w-max px-10 lg:px-8 py-2 rounded-md bg-primary text-white text-sm cursor-pointer font-montserrat"> Send Message</button>
             </Form>
         </aside>
     )

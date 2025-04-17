@@ -6,8 +6,9 @@ import { useRouter } from 'next/navigation'
 import { signIn, useSession } from 'next-auth/react'
 import { handleReset } from '@/action'
 import { appRoutePaths } from '@/routes/paths'
-import { GrUnlock, GrUserWorker } from 'react-icons/gr'
+import { GrUnlock } from 'react-icons/gr'
 import { Form, Input } from 'antd'
+import { IoPersonAddOutline } from 'react-icons/io5'
 
 type TFormProps = {
     email: string
@@ -74,21 +75,26 @@ export default function LoginForm() {
 
 
     return (
-        <aside className='w-full max-w-[280px] mx-auto'>
+        <aside className='flex-1 flex flex-col justify-center items-center gap-2 min-h-screen'>
             {
                 showResetForm ?
                     <>
                         <Form<TResetFormProps>
                             form={resetForm}
                             onFinish={data => handlePasswordReset(data)}
-                            className='flex flex-col gap-2'
+                            className='w-full max-w-xl'
                         >
-                            <label htmlFor="email">Email</label>
-                            <Form.Item<TFormProps> name="email" className='mb-2' style={{ marginBottom: 0, paddingBottom: 0 }}>
-                                <Input placeholder='Enter your Account Email' />
-                            </Form.Item>
-                            <p onClick={() => setShowResetForm(!showResetForm)} className="cursor-pointer underline underline-offset-2 text-primary text-sm">Have an Account? Login</p>
-                            <button type="submit" disabled={loading} className="rounded-full py-2 px-5 md:px-8 w-max bg-secondary text-white text-sm text-center flex-1 cursor-pointer flex items-center gap-2 mt-2">{loading ? <div className="flex gap-2 items-center"><span className="loading loading-spinner loading-xs"></span> Processing...</div> : <div className="flex gap-2 items-center"><GrUnlock className="text-sm text-inherit" /> Reset Password</div>}</button>
+                            <div className="flex flex-col gap-0.5">
+                                <div className="flex flex-col pb-3">
+                                    <h3 className="text-lg md:text-xl text-primary font-bold font-montserrat">Forgot your Password?</h3>
+                                    <label htmlFor="email" className='text-text'>It happens to the best of us.</label>
+                                </div>
+                                <Form.Item<TFormProps> name="email" className=''>
+                                    <Input type="email" placeholder='Enter your Account Email' required style={{ border: "1px solid #666" }} />
+                                </Form.Item>
+                                <p onClick={() => setShowResetForm(!showResetForm)} className="cursor-pointer underline underline-offset-2 text-primary text-sm -mt-4">Have an Account? Login</p>
+                                <button type="submit" disabled={loading} className="md:col-span-2 rounded-full py-2 px-5 md:px-8 w-full bg-primary shadow-primary shadow-md text-white text-sm text-center flex-1 cursor-pointer flex items-center justify-center gap-2 mt-2">{loading ? <span className=''></span> : <GrUnlock className="text-sm text-inherit" />} {loading ? 'Processing...' : 'Reset Password'}</button>
+                            </div>
                         </Form>
                     </>
                     :
@@ -96,18 +102,18 @@ export default function LoginForm() {
                         <Form<TFormProps>
                             form={form}
                             onFinish={data => handleSubmit(data)}
-                            className='flex flex-col gap-2'
+                            className='w-full max-w-xl'
                         >
-                            <label htmlFor="email">Email</label>
-                            <Form.Item<TFormProps> name="email" className='mb-2' style={{ marginBottom: 0, paddingBottom: 0 }}>
-                                <Input type='email' placeholder='Enter Email' required />
-                            </Form.Item>
-                            <label htmlFor="email">Password</label>
-                            <Form.Item<TFormProps> name="password" className='mb-2' style={{ marginBottom: 0, paddingBottom: 0 }}>
-                                <Input type='password' placeholder='Enter Password' required />
-                            </Form.Item>
-                            <p onClick={() => setShowResetForm(!showResetForm)} className="cursor-pointer underline underline-offset-2 -mb-2 text-primary text-right text-xsmall">Forgot Password</p>
-                            <button type="submit" disabled={loading} className="rounded-full py-2 px-5 md:px-8 bg-primary text-white text-sm text-center flex-1 cursor-pointer flex justify-center items-center gap-2 mt-2"><GrUserWorker className="text-sm text-inherit" />{loading ? <div className="flex gap-2 items-center"><span className="loading loading-spinner loading-xs"></span> Processing...</div> : 'Login'}</button>
+                            <div className="grid gap-2">
+                                <Form.Item<TFormProps> name="email" className=''>
+                                    <Input type="email" placeholder='Email e.g. Angelajones@gmail.com' required style={{ border: "1px solid #666" }} />
+                                </Form.Item>
+                                <Form.Item<TFormProps> name="password">
+                                    <Input type="password" placeholder='********' minLength={6} required style={{ border: "1px solid #666" }} />
+                                </Form.Item>
+                                <p onClick={() => setShowResetForm(!showResetForm)} className="cursor-pointer underline underline-offset-2 mb-2 -mt-4 text-primary text-right text-xsmall">Forgot Password</p>
+                            </div>
+                            <button type="submit" disabled={loading} className="md:col-span-2 rounded-full py-2 px-5 md:px-8 w-full bg-primary shadow-primary shadow-md text-white text-sm text-center flex-1 cursor-pointer flex items-center justify-center gap-2 mt-2">{loading ? <span className=''></span> : <IoPersonAddOutline className="text-sm text-inherit" />} {loading ? 'Processing...' : 'Login'}</button>
                         </Form>
                     </>}
         </aside>

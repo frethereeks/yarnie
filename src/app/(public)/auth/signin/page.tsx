@@ -12,16 +12,12 @@ export const metadata: Metadata = {
 
 export default async function SigninPage() {
   return (
-    <main className="relative flex flex-col">
-      <section className="relative py-10 lg:py-20 px-4 bg-white">
-        <div className="container mx-auto grid md:grid-cols-2 lg:grid-cols-5 gap-4 md:px-8 lg:px-10 lg:justify-center">
-          <aside className="relative bg-primary rounded-xl min-h-60 overflow-hidden lg:col-span-3 grid place-items-center">
-            <Image src={ASSETS_URL["surene_palvie_plate"]} alt={"surene_palvie_plate"} fill className={`w-full h-full rounded-xl absolute object-cover object-center flex-shrink-0 flex`} />
-          </aside>
-          <aside className="relative flex flex-col gap-2 md:gap-4 py-5 md:py-10 lg:col-span-2">
-            <LoginForm key={8347704} />
-          </aside>
-        </div>
+    <main className='flex flex-col md:flex-row gap-4 lg:gap-8 md:min-h-screen'>
+      <section className="container mx-auto flex flex-col lg:flex-row gap-4 md:min-h-full bg-white">
+        <aside className="p-4 flex-1 hidden lg:flex flex-col gap-8 w-full lg:max-w-[40rem] py-40 relative bg-primary">
+          <Image src={ASSETS_URL["surene_palvie_loom"]} alt={"surene_palvie_loom"} fill className={`w-full h-full absolute object-cover object-center flex-shrink-0 flex`} />
+        </aside>
+        <LoginForm />
       </section>
     </main>
   )
