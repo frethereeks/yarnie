@@ -19,15 +19,12 @@ export default function PBProductsContainer({ shopData }: { shopData: TProductPr
     const sortOrder: TSortProps[] = [{ id: "x823z613z80", value: "all", text: "Default Sort" }, { id: "x823z613z81", value: "low", text: "Lowest to Highest" }, { id: "x823z613z82", value: "high", text: "Highest to Lowest" }]
 
     const handleChange = (value: "all" | "low" | "high") => {
-        console.log({value})
         if (value === "all") {
             setData(allData)
             setAllData(allData)
-            console.log({data})
         }
         else if (value === "high") {
             setData(() => allData?.sort((a, b) => b.price - a.price))
-            console.log({data})
         }
         else setData(() => allData?.sort((a, b) => a.price - b.price))
     }
