@@ -32,12 +32,12 @@ export const CATEGORY_COLUMNS = (): TableColumnsType<TCategoryProps> => {
             )
         },
         {
-            key: "Menu Total",
-            title: "Menu Total",
+            key: "Products Total",
+            title: "Products Total",
             render: (_, val) => (
                 <div className="flex gap-2 items-center flex-1">
                     <div className="flex flex-col">
-                        <h4 className="leading-none text-sm font-normal whitespace-nowrap text-primary">{val.menu.length.toLocaleString()}</h4>
+                        <h4 className="leading-none text-sm font-normal whitespace-nowrap text-primary">{val.product.length.toLocaleString()}</h4>
                     </div>
                 </div>
             )

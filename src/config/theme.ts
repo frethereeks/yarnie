@@ -1,16 +1,15 @@
 import { ThemeConfig } from "antd";
 
 export const THEME_COLOR = {
-    // primary: "#012f3d",
-    primary: "#116680",
+    primary: "#1e1911",
     "light-primary": "#012f3d5f",
     "dark-primary": "#012f3d",
-    accentColor: "#777",
-    // secondary: "#6dc2be",
-    secondary: "#35d4e4",
+    accentColor: "#e6e6e6",
+    // secondary: "#35d4e4",
+    secondary: "#bc8c0b",
     "light-secondary": "#6dc2be5f",
-    tertiary: "#bf9574",
-    background: "#fcf9f6",
+    tertiary: "#ff5400",
+    background: "#f4f4f4",
     "light-background": "#faf8f2",
     "light-grey": "#f3f3f6",
     border: "#c5cfd2",
@@ -18,14 +17,14 @@ export const THEME_COLOR = {
 }
 
 const fontFamily = {
-    montserrat: "var(--montserrat)",
-    sophia: "var(--sophia)",
+    play: "var(--play)",
+    capriola: "var(--capriola)",
 }
 
 export const appThemeConfig: ThemeConfig = {
     cssVar: true,
     token: {
-        fontFamily: fontFamily.montserrat,
+        fontFamily: fontFamily.play,
         colorPrimary: THEME_COLOR.primary,
         colorLinkHover: THEME_COLOR.accentColor,
         colorLink: THEME_COLOR.accentColor,
@@ -37,7 +36,7 @@ export const appThemeConfig: ThemeConfig = {
             siderBg: THEME_COLOR.text,
             headerBg: THEME_COLOR["light-secondary"],
             screenXS: 200,
-            fontFamily: fontFamily.montserrat,
+            fontFamily: fontFamily.play,
             fontSize: 12,
         },
         Table: {
@@ -46,20 +45,26 @@ export const appThemeConfig: ThemeConfig = {
             rowHoverBg: THEME_COLOR["light-grey"],
             rowSelectedBg: THEME_COLOR["light-grey"],
             rowSelectedHoverBg: THEME_COLOR["light-grey"],
-            fontFamily: "arial",
-            // fontSizeLG: 16,
-            // fontSizeSM: 12,
+            fontFamily: fontFamily.play,
             fontSize: 14,
-            // cellPaddingBlock: 10,
-            cellPaddingInline: 4,
-            // paddingContentVertical: 0,
+            cellPaddingInline: 15,
+            cellPaddingBlock: 0,
+            paddingContentHorizontal: 10,
+            padding: 0
+        },
+        Form: {
+            labelFontSize: 12,
+            verticalLabelMargin: "-6px 0"
         },
         Button: {
             primaryColor: THEME_COLOR.background,
-            colorPrimaryBg: THEME_COLOR.primary
+            colorPrimaryBg: THEME_COLOR.primary,
+            boxShadow: 'none',
+            primaryShadow: "transparent",
         },
         Dropdown: {
-            zIndexPopup: 80000,
+            fontSize: 13,
+            paddingContentVertical: 4,
         },
         Input: {
             colorBgContainer: THEME_COLOR["light-grey"],
@@ -78,8 +83,15 @@ export const appThemeConfig: ThemeConfig = {
             controlOutlineWidth: 0,
         },
         Select: {
-            colorBgContainer: THEME_COLOR.background,
-            zIndexPopup: 80000,
+            // colorBgContainer: THEME_COLOR.background,
+            // colorBgTextHover: THEME_COLOR["light-grey"],
+            // colorBgSolidHover: THEME_COLOR["light-grey"],
+            // controlItemBgActiveHover: THEME_COLOR["light-grey"],
+            // colorBgTextActive: THEME_COLOR["light-grey"],
+            // colorFill: THEME_COLOR["light-grey"],
+            optionActiveBg: THEME_COLOR["light-grey"],
+            optionSelectedBg: THEME_COLOR["text"],
+            optionSelectedColor: THEME_COLOR["light-grey"]
         },
     },
 

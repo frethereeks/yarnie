@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@ant-design/charts": "^2.2.6",
     "@ant-design/nextjs-registry": "^1.0.2",
     "@contentful/rich-text-react-renderer": "^15.22.11",
     "@contentful/rich-text-types": "^16.8.5",
@@ -31,6 +30,7 @@
     "next": "14.2.15",
     "next-auth": "^4.24.8",
     "next-cloudinary": "^6.16.0",
+    "nextjs-toploader": "^3.8.16",
     "nodemailer": "^6.9.16",
     "react": "^18",
     "react-dom": "^18",
@@ -56,7 +56,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
     "postcss": "^8",
-    "prisma": "^6.6.0",
+    "prisma": "^6.11.1",
     "tailwindcss": "^3.4.1",
     "typescript": "^5",
     "webpack": "^5.96.1"

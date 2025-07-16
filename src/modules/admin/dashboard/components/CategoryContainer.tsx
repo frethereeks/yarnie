@@ -28,7 +28,7 @@ export default function CategoryContainer({ data, role }: PageProps) {
 
     const rowSelection: TableProps<TCategoryProps>["rowSelection"] = {
         selectedRowKeys,
-        type: role !== "USER" ? undefined : "checkbox",
+        type: role !== "User" ? undefined : "checkbox",
         onChange(keys: React.Key[]) {
             setSelectedRowKeys(keys)
         },
@@ -52,10 +52,10 @@ export default function CategoryContainer({ data, role }: PageProps) {
                     <div className="flex bg-white justify-between gap-4 p-4">
                         <div className="flex items-center gap-2">
                             <h4 className="text-text text-lg md:text-xl font-semibold pr-4">Category List</h4>
-                            {role !== "USER" && <button onClick={() => setUploadModal(!uploadModal)} className="button bg-secondary py-1">Create Category</button>}
+                            {role !== "User" && <button onClick={() => setUploadModal(!uploadModal)} className="button bg-secondary py-1">Create Category</button>}
                         </div>
                         <div className="flex gap-2">
-                            {role !== "USER" && (
+                            {role !== "User" && (
                                 <>
                                     {(selectedRowKeys.length === 1) && <button onClick={() => setUploadModal(!uploadModal)} className="button flex items-center gap-2"><BsPencil /> Edit</button>}
                                     {(selectedRowKeys.length > 0) && <button onClick={() => setDeleteModal(!deleteModal)} className="button bg-secondary flex items-center gap-2"><AiOutlineDelete /> Delete Selected</button>}
@@ -73,7 +73,7 @@ export default function CategoryContainer({ data, role }: PageProps) {
                             }}
                             scroll={{ x: "max-content" }}
                             rowSelection={{ ...rowSelection }}
-                            dataSource={role === "USER" ? data : data?.map(el => ({ ...el, key: el.id }))}
+                            dataSource={role === "User" ? data : data?.map(el => ({ ...el, key: el.id }))}
                             columns={CATEGORY_COLUMNS()}
                         />
                     </div>

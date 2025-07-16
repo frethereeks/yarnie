@@ -14,66 +14,76 @@ datasource db {
 }
 
 enum ContactStatus {
-  READ
-  UNREAD
-  DELETED
+  Read
+  Unread
+  Deleted
 }
 
 enum FoodStatus {
-  VISIBLE
-  HIDDEN
+  Visible
+  Hidden
 }
 
 enum Role {
-  ROOT
-  ADMIN
-  USER
+  Owner
+  Admin
+  User
 }
 
 enum Status {
-  PENDING
-  ACTIVE
-  SUSPENDED
+  Pending
+  Active
+  Suspended
 }
 
-model YNCategory {
+enum OrderStatus {
+  Pending
+  Received
+  OutForDelivery
+  Delivered
+  Returned
+}
+
+model YnCategory {
   id        String      @id @default(cuid())
   name      String      @db.VarChar(100)
-  status    FoodStatus  @default(VISIBLE)
+  status    FoodStatus  @default(Visible)
   createdAt DateTime    @default(now())
   updatedAt DateTime    @updatedAt
-  product   YNProduct[]
-  user      YNUser      @relation(fields: [userId], references: [id])
+  product   YnProduct[]
+  user      YnUser      @relation(fields: [userId], references: [id])
   userId    String      @db.VarChar(50)
 
   @@index([id])
 }
 
-model YNContact {
+model YnContact {
   id        String        @id @default(cuid())
   fullname  String        @db.VarChar(100)
   email     String        @unique @db.VarChar(100)
   phone     String        @db.VarChar(50)
   message   String        @db.VarChar(160)
-  status    ContactStatus @default(UNREAD)
+  status    ContactStatus @default(Unread)
   createdAt DateTime      @default(now())
   updatedAt DateTime      @updatedAt
 
   @@index([id])
 }
 
-model YNLogger {
+model YnLogger {
   id        String        @id @default(cuid())
+  action    String        @db.VarChar(20)
+  table     String        @db.VarChar(20)
   message   String        @db.LongText()
   userId    String?       @db.VarChar(50)
   createdAt DateTime      @default(now())
   updatedAt DateTime      @updatedAt
-  status    ContactStatus @default(UNREAD)
+  status    ContactStatus @default(Unread)
 
   @@index([id])
 }
 
-model YNProduct {
+model YnProduct {
   id           String     @id @default(cuid())
   name         String     @db.VarChar(100)
   slug         String     @db.VarChar(500)
@@ -82,13 +92,13 @@ model YNProduct {
   qtyAvailable Float      @default(0)
   popular      Boolean    @default(false)
   description  String?    @db.MediumText()
-  status       FoodStatus @default(VISIBLE)
+  status       FoodStatus @default(Visible)
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 
+  category    YnCategory    @relation(fields: [categoryId], references: [id])
   categoryId  String        @db.VarChar(50)
-  category    YNCategory    @relation(fields: [categoryId], references: [id])
-  user        YNUser        @relation(fields: [userId], references: [id])
+  user        YnUser        @relation(fields: [userId], references: [id])
   userId      String        @db.VarChar(50)
   YnOrderItem YnOrderItem[]
 
@@ -100,88 +110,49 @@ model YnOrder {
   fullname    String        @db.VarChar(100)
   email       String        @db.VarChar(50)
   phone       String        @db.VarChar(20)
-  proof       String        @db.VarChar(20)
-  status      Status        @default(PENDING)
+  proof       String        @db.TinyText()
+  address     String        @db.TinyText()
+  status      OrderStatus   @default(Pending)
   delivery    DateTime
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
-  updatedBy   String        @db.VarChar(50)
+  updatedBy   String?       @db.VarChar(50)
   YnOrderItem YnOrderItem[]
 
   @@index([id])
 }
 
 model YnOrderItem {
-  id        String     @id @default(cuid()) @db.VarChar(50)
-  price     Float      @default(0)
-  quantity  Int        @default(0)
-  // status    Status     @default(PENDING)
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  updatedBy String     @db.VarChar(50)
-  product   YNProduct? @relation(fields: [productId], references: [id], onDelete: Cascade)
-  productId String?
-  order     YnOrder?   @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  orderId   String?
+  id        String      @id @default(cuid()) @db.VarChar(50)
+  price     Float       @default(0)
+  quantity  Int         @default(0)
+  status    OrderStatus @default(Pending)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  updatedBy String?     @db.VarChar(50)
+  product   YnProduct  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId String
+  order     YnOrder    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId   String
 
   @@index([id])
 }
 
-model YNUser {
+model YnUser {
   id        String   @id @default(cuid())
   firstname String   @db.VarChar(50)
   lastname  String   @db.VarChar(50)
   image     String?  @db.LongText()
   email     String   @unique @db.VarChar(100)
   password  String   @db.VarChar(100)
-  status    Status   @default(PENDING)
-  role      Role     @default(USER)
+  status    Status   @default(Pending)
+  role      Role     @default(User)
   token     String?  @db.VarChar(100)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  category YNCategory[]
-  product  YNProduct[]
-  blogs    YNBlog[]
-
-  @@index([id])
-}
-
-model YNBlog {
-  id        String      @id @default(cuid())
-  title     String      @db.VarChar(150)
-  image     String?     @db.VarChar(100)
-  text      String      @db.LongText()
-  comments  YNComment[]
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
-  user      YNUser?     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId    String?
-
-  @@index([id])
-}
-
-model YNComment {
-  id        String    @id @default(cuid())
-  fullname  String    @db.VarChar(50)
-  email     String    @db.VarChar(100)
-  replies   YNReply[]
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  blog      YNBlog?   @relation(fields: [blogId], references: [id], onDelete: Cascade)
-  blogId    String?
-
-  @@index([id])
-}
-
-model YNReply {
-  id        String     @id @default(cuid())
-  fullname  String     @db.VarChar(50)
-  email     String     @db.VarChar(100)
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  comment   YNComment? @relation(fields: [commentId], references: [id], onDelete: Cascade)
-  commentId String?
+  category YnCategory[]
+  product  YnProduct[]
 
   @@index([id])
 }

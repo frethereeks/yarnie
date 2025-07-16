@@ -41,28 +41,28 @@ export default function ContactForm() {
 
     return (
         <aside className="relative flex flex-col py-5">
-            <Form form={form} onFinish={handleSubmit} className="grid sm:grid-cols-2 gap-x-2 md:gap-x-4 w-full bg-white p-4">
+            <Form form={form} layout='vertical' onFinish={handleSubmit} className="grid sm:grid-cols-2 gap-x-2 md:gap-x-4 w-full bg-white p-4">
                 <div className="flex flex-col gap-1">
-                    <label htmlFor="firstname" className="text-sm text-text">First Name</label>
-                    <Form.Item<TFormProps> className="border" name="firstname">
-                        <Input name="firstname" required placeholder="Sunday" />
+                    {/* <label htmlFor="firstname" className="text-sm text-text">First Name</label> */}
+                    <Form.Item<TFormProps> name="firstname" label="First Name" rules={[{required: true, message: 'First Name is required'}]}>
+                        <Input name="firstname" placeholder="Sunday" />
                     </Form.Item>
                 </div>
                 <div className="flex flex-col gap-1">
-                    <label htmlFor="lastname" className="text-sm text-text">Last Name</label>
-                    <Form.Item<TFormProps> className="border" name="lastname">
-                        <Input name="lastname" required placeholder="Anjorin" />
+                    {/* <label htmlFor="lastname" className="text-sm text-text">Last Name</label> */}
+                    <Form.Item<TFormProps> name="lastname" label="Last Name" rules={[{required: true, message: 'Last Name is required'}]}>
+                        <Input name="lastname" placeholder="Anjorin" />
                     </Form.Item>
                 </div>
                 <div className="flex flex-col gap-1">
-                    <label htmlFor="email" className="text-sm text-text">Email</label>
-                    <Form.Item<TFormProps> className="border" name="email">
-                        <Input type="email" name="email" required placeholder="sundy149@gmail.com" />
+                    {/* <label htmlFor="email" className="text-sm text-text">Email</label> */}
+                    <Form.Item<TFormProps> name="email" label="Email" rules={[{required: true, message: 'email is required'}, {type: "email", message: "Please, enter a valid email"}]}>
+                        <Input type="email" name="email" placeholder="myniceaddress@gmail.com" />
                     </Form.Item>
                 </div>
                 <div className="flex flex-col gap-1">
-                    <label htmlFor="phone" className="text-sm text-text">Phone</label>
-                    <Form.Item<TFormProps> className="border" name="phone">
+                    {/* <label htmlFor="phone" className="text-sm text-text">Phone</label> */}
+                    <Form.Item<TFormProps> name="phone" label="Phone">
                         <div className="flex gap-1 text-text text-sm lg:text-base bg-light-grey">
                             <div className="flex-shrink-0 grid place-items-center pl-4">+234</div>
                             {/* <input onChange={handleInputChange} type="phone" name="phone" id="phone" maxLength={10} required placeholder='Phone Number e.g. 7082592560' className="flex-1 py-3" /> */}
@@ -71,12 +71,12 @@ export default function ContactForm() {
                     </Form.Item>
                 </div>
                 <div className="flex flex-col gap-1 md:col-span-2">
-                    <label htmlFor="message" className="text-sm text-text">Message</label>
-                    <Form.Item<TFormProps> className="border" name="message">
+                    {/* <label htmlFor="message" className="text-sm text-text">Message</label> */}
+                    <Form.Item<TFormProps> name="message" label="Message" rules={[{required: true, message: 'Message is required'}]}>
                         <TextArea rows={5} name="message" placeholder="Tell us. We always listen..." className='resize-none' />
                     </Form.Item>
                 </div>
-                <button type='submit' className=" md:col-span-2 flex-shrink-0 flex items-center gap-2 w-max px-10 lg:px-8 py-2 rounded-md bg-primary text-white text-sm cursor-pointer font-montserrat"> Send Message</button>
+                <button type='submit' className=" md:col-span-2 flex-shrink-0 flex items-center gap-2 w-max px-10 lg:px-8 py-2 rounded-md bg-primary text-white text-sm cursor-pointer font-play"> Send Message</button>
             </Form>
         </aside>
     )

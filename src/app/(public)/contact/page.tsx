@@ -15,28 +15,28 @@ export default function ContactPage() {
     <main className="relative bg-background flex flex-col">
       <section className="relative py-10 lg:py-20 px-4 bg-white">
         <div className="container mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:px-8 lg:px-10 lg:justify-center">
-          <aside className="relative bg-border text-primary w-full max-w-lg rounded-md flex flex-col gap-4 md:gap-6 p-5 md:py-10">
+          <aside className="relative bg-primary text-border w-full max-w-lg rounded-md flex flex-col gap-4 md:gap-6 p-5 md:py-10">
             <div className="flex flex-col">
-              <h3 className='text-primary text-3xl md:text-4xl font-serif font-bold'>Contact us</h3>
+              <h3 className='text-secondary text-3xl md:text-4xl font-aladin font-bold'>Contact us</h3>
               <p className="text-sm leading-loose">Fill out the form and our team will get back to you as soon as we can</p>
             </div>
             <div className="flex items-center gap-1">
               <div className="flex-shrink-0 grid place-items-center p-2">
                 <HiPhoneIncoming className="text-xl text-inherit cursor-pointer" />
               </div>
-              <Link href={"tel: +2349069071120"} className="font-montserrat text-sm md:text-base max-w-md">+2349069071120</Link>
+              <Link href={"tel: +2349069071120"} className="font-play text-white text-sm md:text-base max-w-md">+2349069071120</Link>
             </div>
             <div className="flex items-center gap-1">
               <div className="flex-shrink-0 grid place-items-center p-2">
                 <HiOutlineEnvelopeOpen className="text-xl text-inherit cursor-pointer" />
               </div>
-              <Link href={"mailto: info@theyarnie.com"} className="font-montserrat text-sm md:text-base max-w-md">info@theyarnie.com</Link>
+              <Link href={"mailto: info@theyarnie.com"} className="font-play text-white text-sm md:text-base max-w-md">info@theyarnie.com</Link>
             </div>
             <div className="flex gap-1">
               <div className="flex-shrink-0 grid place-items-center p-2">
                 <HiOutlineLocationMarker className="text-xl text-inherit cursor-pointer" />
               </div>
-              <p className="font-montserrat text-sm md:text-base max-w-md">Somewhere along NYSC Camp, Kubwa, Abuja or Kebbi State, Nigeria</p>
+              <p className="font-play text-sm md:text-base max-w-md">Somewhere along NYSC Camp, Kubwa, Abuja or Kebbi State, Nigeria</p>
             </div>
           </aside>
           <aside className="relative min-h-60 overflow-hidden lg:col-span-2">

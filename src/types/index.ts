@@ -1,30 +1,40 @@
-import { Category, Menu, Sale, User } from "@prisma/client"
+import { YnCategory, YnProduct, YnUser, YnOrder, YnOrderItem } from "@prisma/client"
 
-export type TCategory = Pick<Category, "id" | "name" | "status" | "createdAt" | "userId" | "updatedAt">
-export type TMenu = Pick<Menu, "id" | "name" | "slug" | "image" | "description" | "price" | "popular" | "categoryId" | "status" | "createdAt" | "userId">
-// export type TSale = Pick<Sale, "id" | "alcohol" | "drink" | "food" | "createdAt" | "userId">
-export type TUser = Pick<User, "id" | "firstname" | "lastname" | "email" | "image" | "password" | "role" | "status" | "token" | "createdAt">
+export type TCategory = Pick<YnCategory, "id" | "name" | "status" | "createdAt" | "userId" | "updatedAt">
+export type TProduct = Pick<YnProduct, "id" | "name" | "slug" | "image" | "description" | "price" | "qtyAvailable" | "popular" | "categoryId" | "status" | "createdAt" | "userId">
+export type TOrder = Pick<YnOrder, "id" | "fullname" | "email" | "phone" | "proof" | "delivery" | "status" | "createdAt" | "updatedAt">
+export type TOrderItem = Pick<YnOrderItem, "id" | "price" | "quantity" | "status" | "createdAt">
+export type TUser = Pick<YnUser, "id" | "firstname" | "lastname" | "email" | "image" | "password" | "role" | "status" | "token" | "createdAt" | "updatedAt">
+
+export type Prettify<T> = {
+    [P in keyof T]: T[P]
+} & {}
 
 export type TCategoryProps = {
     user: {
         id: string, firstname: string, lastname: string
     },
-    menu: {
+    product: {
         id: string, name: string
     }[]
-} & Category
+} & YnCategory
 
-export type TMenuProps = {
+export type TOrderProps = Prettify<{
+    YnOrderItem: TOrderItemProps[]
+} & YnOrder>
+
+export type TOrderItemProps = {
+    // user: Pick<YnUser, "id" | "image" | "slug">
+    product: Pick<YnProduct, "id" | "name" | "image" | "price" | "qtyAvailable">
+} & YnOrderItem
+
+export type TProductProps = Prettify<{
     user: Pick<TUser, "id" | "firstname" | "lastname">,
-    category: Pick<TCategory, "name">,
-} & TMenu
-
-export type TSaleProps = {
-    user: Pick<TUser, "id" | "firstname" | "lastname">
-} & Sale
+    category: Pick<TCategory, "id" | "name">,
+} & TProduct>
 
 export type TUserProps = {
-    menu: Pick<TMenu, "id">[]
+    product: Pick<TProduct, "id">[]
     category: Pick<TCategory, "id">[],
 } & TUser
 
@@ -33,5 +43,6 @@ export type CartProp = {
     name: string,
     image: string,
     price: number,
-    qty: number,
+    quantity: number,
+    qtyAvailable?: number,
 }

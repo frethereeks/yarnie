@@ -24,7 +24,7 @@ export default function HappyClientSection() {
                                     {/* <Image src={ASSETS_URL["oakyard_gallery7"]} alt="Monday Daniel" className='object-cover' fill /> */}
                                 </div>
                                 <div data-aos-duration="1000" data-aos-delay="1000" data-aos="zoom-in-left" className="flex-1 flex flex-col justify-center gap-1 pt-2">
-                                    <Para1 className='-my-2 text-primary font-eugusto'>{client.name}</Para1>
+                                    <Para1 className='-my-2 text-primary font-aladin'>{client.name}</Para1>
                                     <Para3 variant='secondary' className='opacity-70'>{client.createdAt}</Para3>
                                 </div>
                             </div>

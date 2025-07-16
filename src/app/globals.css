@@ -1,69 +1,98 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import 'antd/dist/reset.css'; 
 
-*, *::before, *::after {
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  outline: none !important;
   outline: 0 !important;
-  transition: all .35s ease-in-out;
 }
 
-html, body {
+*:not(.ant-btn) a:hover,
+*:where(.css-dev-only-do-not-override-os2fvf)>a:hover {
+  color: inherit;
+}
+
+html,
+body {
   position: relative;
   overflow-x: hidden;
-  overflow-y: visible;
+  overflow-y: Visible;
   min-height: 100vh;
 }
 
 @layer components {
-  .overlay{
+  .overlay {
     @apply top-0 left-0 absolute w-full h-full;
   }
-  .after-overlay{
+
+  .after-overlay {
     @apply after:top-0 after:left-0 after:absolute after:w-full after:h-full;
   }
-  .before-overlay{
+
+  .before-overlay {
     @apply before:top-0 before:left-0 before:absolute before:w-full before:h-full;
   }
-  .heading-one{
+
+  .heading-one {
     @apply font-bold text-text text-3xl md:text-4xl;
   }
-  .heading-two{
+
+  .heading-two {
     @apply font-bold text-text text-2xl md:text-3xl;
   }
-  .heading-three{
+
+  .heading-three {
     @apply font-semibold text-text text-xl md:text-2xl;
   }
-  .heading-four{
+
+  .heading-four {
     @apply font-semibold text-text text-lg md:text-xl;
   }
-  .heading-five{
+
+  .heading-five {
     @apply font-semibold text-text text-base md:text-lg;
   }
-  .text-default{
+
+  .text-default {
     @apply font-medium text-text text-sm md:text-lg;
   }
-  .text-small{
+
+  .text-small {
     @apply font-normal text-text text-xs md:text-sm;
   }
-  .text-xsmall{
+
+  .text-xsmall {
     @apply font-normal text-text text-[.65rem] md:text-xs;
   }
-  .text-xxsmall{
+
+  .text-xxsmall {
     @apply font-normal text-text text-[.5rem] md:text-[.65rem];
   }
-  .card{
+
+  .card {
     @apply bg-white p-2 md:p-4 rounded-md;
   }
+
   .button {
     @apply bg-primary py-2 px-4 md:px-6 rounded-md text-white text-xs md:text-sm font-medium cursor-pointer whitespace-nowrap;
   }
 }
 
 @layer utilities {
+  .wide-modal.ant-modal {
+    max-width: none !important;
+    width: 80vw !important;
+    top: 100px;
+  }
+
   .container {
     max-width: 1650px !important;
   }
+
   .text-balance {
     text-wrap: balance;
   }

@@ -9,17 +9,27 @@ export const config = {
     FACEBOOK_CLIENT_SECRET: process.env.FACEBOOK_CLIENT_SECRET || "",
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID || "",
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || "",
-    TOKEN_ENCRYPTION_KEY:
-        process.env.TOKEN_ENCRYPTION_KEY || "Uwz0^axz!12i9a%yaxp0w",
+    TOKEN_ENCRYPTION_KEY: process.env.TOKEN_ENCRYPTION_KEY || "Uwz0^axz!12i9a%yaxp0w",
+    BANKER: {
+        ACCOUNT_NAME: process.env.NEXT_PUBLIC_ACCOUNT_NAME,
+        ACCOUNT_NUMBER: process.env.NEXT_PUBLIC_ACCOUNT_NUMBER,
+        ACCOUNT_HOLDER: process.env.NEXT_PUBLIC_ACCOUNT_HOLDER,
+    },
     CLOUDINARY: {
-        API_KEY: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY || "674181944781841", //look into not exposing this values wither via api endpoint or next ....
+        API_KEY: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY || "whatevzbro", //look into not exposing this values wither via api endpoint or next ....
         UPLOAD_PRESET:
             process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "egfpi8od",
         CLOUD_NAME: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "dnl81n8vu",
         API_SECRET: process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET || "sssshhhhh"
     },
-    CONTENTFUL: {
-        SPACE_ID: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID || "9q6wzkaz06243a0x6",
-        ACCESS_TOKEN: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN || "CQyV8820q4-zs5asdfhzupq"
-    }
+    NEXT_MAIL: {
+        HOST: process.env.NEXT_MAIL_HOST,
+        PORT: process.env.NEXT_MAIL_PORT,
+        USERNAME: process.env.NEXT_MAIL_USERNAME,
+        PASSWORD: process.env.NEXT_MAIL_PASSWORD,
+        RECEIVER: process.env.NEXT_MAIL_RECEIVER,
+        NOREPLY: process.env.NEXT_MAIL_NOREPLY,
+        FROM: process.env.NEXT_MAIL_USERNAME,
+        BCC: process.env.NEXT_MAIL_BCC,
+    },
 }

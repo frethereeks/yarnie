@@ -1,9 +1,11 @@
 "use client"
+import { ASSETS_URL } from '@/assets'
 import { config } from '@/config'
 import { headerLinks } from '@/data'
 import { appRoutePaths } from '@/routes/paths'
 import { Form, Input } from 'antd'
 import { useForm } from 'antd/es/form/Form'
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { HiOutlineLocationMarker, HiPhoneIncoming } from 'react-icons/hi'
@@ -36,13 +38,12 @@ export default function Footer() {
             <section className="py-6 px-4 bg-primary relative">
                 <div className="container mx-auto grid md:grid-cols-2 lg:grid-cols-3 pt-4 pb-10">
                     <div className="flex flex-col w-max">
-                        <Link href={appRoutePaths.home} className='relative w-max flex after:absolute after:w-full after:h-[1px] after:bg-white after:rounded-md after:rotate-12 after:left-0 after:top-1/2 after:-translate-y-1/2 p-2'>
-                            <p className="text-3xl md:text-5xl text-secondary relative rotate-12 z-30 font-[cursive]">T</p>
-                            <p className="text-3xl md:text-5xl text-secondary relative rotate-12 font-[cursive]">Y</p>
+                        <Link href={appRoutePaths.home} className='relative w-max'>
+                            <Image src={ASSETS_URL['logo']} alt={"Yarnie Logo"} height={37} width={86} />
                         </Link>
                         <p className="text-sm text-white max-w-sm">The Yarnie is all about a crochet making, crochet making is the process of creating fabric or other similar items using a crochet hook to interlock loops of yarn, thread, or other materials.</p>
                     </div>
-                    <div className="flex flex-col">
+                    <div className="flex flex-col text-white">
                         {
                             headerLinks.map(link => (
                                 <Link key={link.id} href={link.url} className={`relative flex px-4 py-2 text-white hover:text-secondary text-base font-bold`}>{link.title}</Link>
@@ -53,25 +54,25 @@ export default function Footer() {
                     <div className="md:col-span-2 lg:col-span-1 flex flex-col gap-4 text-white">
                         <div className="flex items-center gap-1">
                             <div className="flex-shrink-0 grid place-items-center p-2">
-                                <HiPhoneIncoming className="text-xl text-inherit cursor-pointer" />
+                                <HiPhoneIncoming className="text-xl text-secondary cursor-pointer" />
                             </div>
-                            <Link href={"tel: +2349069071120"} className="font-montserrat text-sm md:text-base max-w-md">+2349069071120</Link>
+                            <Link href={"tel: +2349069071120"} className="font-play text-white text-sm md:text-base max-w-md">+2349069071120</Link>
                         </div>
                         <div className="flex items-center gap-1">
                             <div className="flex-shrink-0 grid place-items-center p-2">
-                                <HiOutlineEnvelopeOpen className="text-xl text-inherit cursor-pointer" />
+                                <HiOutlineEnvelopeOpen className="text-xl text-secondary cursor-pointer" />
                             </div>
-                            <Link href={"mailto: info@theyarnie.com"} className="font-montserrat text-sm md:text-base max-w-md">info@theyarnie.com</Link>
+                            <Link href={"mailto: info@theyarnie.com"} className="font-play text-white text-sm md:text-base max-w-md">info@theyarnie.com</Link>
                         </div>
                         <div className="flex gap-1">
                             <div className="flex-shrink-0 grid place-items-center p-2">
-                                <HiOutlineLocationMarker className="text-xl text-inherit cursor-pointer" />
+                                <HiOutlineLocationMarker className="text-xl text-secondary cursor-pointer" />
                             </div>
-                            <p className="font-montserrat text-sm md:text-base max-w-md">Somewhere along NYSC Camp, Kubwa, Abuja or Kebbi State, Nigeria</p>
+                            <p className="font-play text-sm md:text-base max-w-md">Somewhere along NYSC Camp, Kubwa, Abuja or Kebbi State, Nigeria</p>
                         </div>
                     </div>
                 </div>
-                <div className="absolute w-full bottom-0 left-0 p-4 bg-primary text-white text-sm text-center">Copyright &copy; {new Date().getFullYear()} The Yarnie. All rights reserved</div>
+                <div className="absolute w-full bottom-0 left-0 p-4 bg-primary text-white text-sm text-center">Copyright &copy; {new Date().getFullYear()} The Yarnie Beauty & Crotchet. All rights reserved</div>
             </section>
         </footer>
     )

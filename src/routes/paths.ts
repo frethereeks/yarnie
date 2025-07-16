@@ -14,12 +14,13 @@ export const authRoutes = {
  */
 export const adminRoutes = {
     admindashboard: "/admin/dashboard",
-    adminshop: "/admin/shop",
+    adminproducts: "/admin/products",
     admincontact: "/admin/contact",
     adminuser: "/admin/users",
-    adminshopEdit: (id:string) =>  `/admin/shop/edit/${id}`,
-    adminprofile: "/admin/profile",
-    adminsales: "/admin/sales",
+    adminproductsEdit: (id:string) =>  `/admin/shop/edit/${id}`,
+    adminsettings: "/admin/settings",
+    adminorders: "/admin/orders",
+    // adminproducts: "/admin/product",
 }
 
 /**
@@ -34,8 +35,8 @@ export const publicRoutes = {
     shop: "/shop",
     search: "/search",
     singleShop: (id: string) => `/shop/${id}`,
-    signin: "/auth/login",
-    signup: "/auth/register",
+    signin: "/auth/signin",
+    signup: "/auth/signup",
     sitemap: "/sitemap.xml",
     verify: "/auth/verify",
     logout: "/auth/logout",

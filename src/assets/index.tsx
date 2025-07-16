@@ -1,5 +1,6 @@
 import boardwalk_shoulder_bag from "./boardwalk_shoulder_bag.jpg"
 import crochet_beach_bag_pattern from "./crochet_beach_bag_pattern.jpg"
+import logo from "./logo.png"
 import surene_palvie_loom from "./surene_palvie_loom.jpg"
 import surene_palvie_plate from "./surene_palvie_plate.jpg"
 import surene_palvie_platetrans from "./surene_palvie_plate.png"
@@ -19,6 +20,7 @@ import yarn_assortedcolors from "./yarn_assortedcolors.jpg"
 export const ASSETS_URL = {
     boardwalk_shoulder_bag,
     crochet_beach_bag_pattern,
+    logo,
     surene_palvie_loom,
     surene_palvie_plate,
     surene_palvie_platetrans,

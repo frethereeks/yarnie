@@ -7,7 +7,6 @@ export default {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/modules/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    './node_modules/antd/dist/reset.css',
   ],
   theme: {
     extend: {
@@ -17,6 +16,7 @@ export default {
       colors: {
         primary: THEME_COLOR.primary,
         secondary: THEME_COLOR.secondary,
+        accent: THEME_COLOR.accentColor,
         "light-primary": THEME_COLOR["light-primary"],
         "light-secondary": THEME_COLOR["light-secondary"],
         background: THEME_COLOR.background,
@@ -27,8 +27,8 @@ export default {
         text: THEME_COLOR.text, 
       },
       fontFamily: {
-        montserrat: "var(--montserrat)",
-        sofia: "var(--sofia)",
+        play: "var(--play)",
+        capriola: "var(--capriola)",
       }
     },
   },

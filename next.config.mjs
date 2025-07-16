@@ -13,7 +13,7 @@ const nextConfig = {
         // maxImageFileSize: 10 * 1024 * 1024, // 10MB (adjust as needed),
         remotePatterns: [
             {
-                hostname: "contentful.com",
+                hostname: "res.cloudinary.com",
                 protocol: "https",
             },
             {

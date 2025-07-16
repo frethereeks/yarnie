@@ -1,9 +1,8 @@
 "use client"
 import { CartProp } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { notification } from "antd";
 // import { CartProp } from "../../types";
-import toast from "react-hot-toast";
-
 // const initialState: CartProp[] = JSON.parse(window.localStorage.getItem("yarnie__cart")!) as unknown as CartProp[] || []
 const initialState: CartProp[] =  []
 
@@ -19,11 +18,11 @@ export const cartSlice = createSlice({
         addToCart(state, action: PayloadAction<CartProp>) {
             const findCart = state.find(el => el.id === action.payload.id)
             if (findCart) {
-                toast.error(`This item has already been added to cart.`, { id: "123" })
+                notification.error({message: `This item has already been added to cart.`, key: "123", showProgress: true })
             }
             else {
                 state.unshift(action.payload)
-                toast.success(`${action.payload.name} added to cart`, { id: "123" })
+                notification.success({message: `${action.payload.name} added to cart`, key: "123", showProgress: true })
                 // window.localStorage.setItem("yarnie__cart", JSON.stringify(state))
             }
         },
@@ -33,20 +32,20 @@ export const cartSlice = createSlice({
          * @param action Get the payload property on this action to get the actual cart item. 
          * The payload is the new cart item properties that is being modified (might not be all the properties, hence, the use of the spread operator syntax to replace only matching properties)
          */
-        changeInCart(state, action: PayloadAction<Pick<CartProp, "id" | "qty">>) {
-            console.log({qty: action.payload.qty})
-            if (action.payload.qty === 0) {
+        changeInCart(state, action: PayloadAction<Pick<CartProp, "id" | "quantity">>) {
+            console.log({ quantity: action.payload.quantity, action})
+            if (action.payload.quantity === 0) {
                 state.forEach((el, i) => {
                     if (el.id === action.payload.id) {
                         state.splice(i, 1)
                     }
                 })
-                toast.error(`Item removed from cart`, { id: `123`, })
+                notification.error({message: `Item removed from cart`, key: `123`, showProgress: true })
             }
             else {
                 state.forEach((el, i) => {
                     if (el.id === action.payload.id) {
-                        state[i].qty = action.payload.qty
+                        state[i].quantity = action.payload.quantity
                     }
                 })
             }
@@ -58,7 +57,7 @@ export const cartSlice = createSlice({
         */
        emptyCart(state) {
            state.splice(0)
-           toast.success(`Checkout Successfully acknowledged. We will get back to you as soon as we can`, { id: `123`, })
+           notification.success({message: `Checkout Successfully acknowledged. We will get back to you as soon as we can`, key: `123`, showProgress: true })
         //    console.log('state', state)
         //    window.localStorage.setItem("yarnie__cart", JSON.stringify(state))
         },

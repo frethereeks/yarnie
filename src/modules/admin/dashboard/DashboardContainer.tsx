@@ -37,10 +37,10 @@
 //   // const totalDrink = sales._sum.drink ?? 0
 //   // const totalFood = sales._sum.food ?? 0
 //   // const allAdmins = res?.data?.users.filter(el => el.role === "ADMIN").length ?? 0
-//   // const allUsers = res?.data?.users.filter(el => el.role === "USER").length ?? 0
+//   // const allUsers = res?.data?.users.filter(el => el.role === "User").length ?? 0
 //   // const totalSales = totalAlcohol + totalDrink + totalFood;
 //   // const totalMenu = res?.data?.menu.reduce((oldValue, item) => item.price * oldValue, 0)
-//   // const activeMenu = res.data?.menu.filter(el => el.status === "VISIBLE")
+//   // const activeMenu = res.data?.menu.filter(el => el.status === "Visible")
 //   // const inActiveMenu = res.data?.menu.filter(el => el.status === "HIDDEN")
 //   // const totalUsers = res?.data?.users.length
 
@@ -50,10 +50,10 @@
 //         <aside className="max-w-xs flex-shrink-0 bg-white p-4 rounded-md shadow shadow-slate-200 flex flex-col">
 //           <div className="flex-1 flex-shrink-0">
 //             <h2 className="text-xsmall font-medium">Hello, <span className="heading-three text-secondary font-semibold">{res?.data?.user.firstname} {res?.data?.user.lastname}</span></h2>
-//             <p className="text-xsmall font-montserrat opacity-75">Here you can manage your online store</p>
+//             <p className="text-xsmall font-play opacity-75">Here you can manage your online store</p>
 //           </div>
-//           <div style={{ borderTop: "1px solid #ddd", paddingTop: '.45rem' }} className="text-xxsmall font-montserrat flex justify-end gap-4">
-//             <p className='flex items-center gap-1 text-xs'><span className="grid h-2 w-2 bg-primary flex-shrink-0"></span> {res?.data?.user?.role === "ROOT" ? "MAIN ADMIN" : res?.data?.user?.role}</p>
+//           <div style={{ borderTop: "1px solid #ddd", paddingTop: '.45rem' }} className="text-xxsmall font-play flex justify-end gap-4">
+//             <p className='flex items-center gap-1 text-xs'><span className="grid h-2 w-2 bg-primary flex-shrink-0"></span> {res?.data?.user?.role === "Owner" ? "MAIN ADMIN" : res?.data?.user?.role}</p>
 //           </div>
 //         </aside>
 //         <div className="flex-1 flex flex-wrap gap-4">
@@ -63,11 +63,11 @@
 //                 <LuScrollText className='text-xl flex-shrink-0' />
 //               </div>
 //               <div className="flex flex-col items-end">
-//                 <p style={{ opacity: .7 }} className="text-xxsmall font-montserrat opacity-75 text-right">Sales</p>
+//                 <p style={{ opacity: .7 }} className="text-xxsmall font-play opacity-75 text-right">Sales</p>
 //                 <h2 className="flex-shrink-0 text-lg text-right font-bold">&#8358;{totalSales?.toLocaleString()}</h2>
 //               </div>
 //             </div>
-//             <div style={{ borderTop: "1px solid #ddd", paddingTop: '.45rem' }} className="text-xxsmall font-montserrat flex justify-end gap-4">
+//             <div style={{ borderTop: "1px solid #ddd", paddingTop: '.45rem' }} className="text-xxsmall font-play flex justify-end gap-4">
 //               {/* <p className='flex items-center gap-1 text-xs'><span className="grid h-2 w-2 bg-primary flex-shrink-0"></span> {allFood.toLocaleString()} Food</p>
 //               <p className='flex items-center gap-1 text-xs'><span className="grid h-2 w-2 bg-secondary flex-shrink-0"></span> {allAlcohol.toLocaleString()} Alcohol</p>
 //               <p className='flex items-center gap-1 text-xs'><span className="grid h-2 w-2 bg-red-500 flex-shrink-0"></span> {allDrink.toLocaleString()} Drink</p> */}
@@ -79,11 +79,11 @@
 //                 <LuUtensilsCrossed className='text-xl flex-shrink-0' />
 //               </div>
 //               <div className="flex flex-col items-end">
-//                 <p style={{ opacity: .7 }} className="text-xxsmall font-montserrat opacity-75 text-right">Food</p>
+//                 <p style={{ opacity: .7 }} className="text-xxsmall font-play opacity-75 text-right">Food</p>
 //                 <h2 className="flex-shrink-0 text-lg text-right font-bold">&#8358;{totalMenu?.toLocaleString()}</h2>
 //               </div>
 //             </div>
-//             <div style={{ borderTop: "1px solid #ddd", paddingTop: '.45rem' }} className="text-xxsmall font-montserrat flex justify-end gap-4">
+//             <div style={{ borderTop: "1px solid #ddd", paddingTop: '.45rem' }} className="text-xxsmall font-play flex justify-end gap-4">
 //               <p className='flex items-center gap-1 text-xs'><span className="grid h-2 w-2 bg-primary flex-shrink-0"></span> {activeMenu?.length.toLocaleString()} Active</p>
 //               <p className='flex items-center gap-1 text-xs'><span className="grid h-2 w-2 bg-secondary flex-shrink-0"></span> {inActiveMenu?.length.toLocaleString()} Inactive</p>
 //             </div>
@@ -94,11 +94,11 @@
 //                 <GrUserWorker className='text-xl flex-shrink-0' />
 //               </div>
 //               <div className="flex flex-col items-end">
-//                 <p style={{ opacity: .7 }} className="text-xxsmall font-montserrat opacity-75 text-right">Staff</p>
+//                 <p style={{ opacity: .7 }} className="text-xxsmall font-play opacity-75 text-right">Staff</p>
 //                 <h2 className="flex-shrink-0 text-lg text-right font-bold">{totalUsers?.toLocaleString()}</h2>
 //               </div>
 //             </div>
-//             <div style={{ borderTop: "1px solid #ddd", paddingTop: '.45rem' }} className="text-xxsmall font-montserrat flex justify-end gap-4">
+//             <div style={{ borderTop: "1px solid #ddd", paddingTop: '.45rem' }} className="text-xxsmall font-play flex justify-end gap-4">
 //               {/* <p className='flex items-center gap-1 text-xs'><span className="grid h-2 w-2 bg-primary flex-shrink-0"></span> {allMainAdmins?.toLocaleString()} Food</p> */}
 //               {/* {
 //                 users.map(({ _count: { id }, role }) => (

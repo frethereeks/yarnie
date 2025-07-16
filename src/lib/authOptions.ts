@@ -1,12 +1,29 @@
 import { type NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { User } from '@prisma/client';
+import { $Enums, YnUser } from '@prisma/client';
 import jwt from "jsonwebtoken"
-// import { authenticateByRole } from './authByRole';
-// import { fetchUser } from '@/actions';
 import { appRoutePaths } from '@/routes/paths';
 import prisma from '@/lib/prisma';
 import bcryptjs from "bcryptjs"
+import { DefaultSession, User } from 'next-auth';
+
+export type ExtendedUser = User & {
+    role: $Enums.Role,
+    id: string
+} & DefaultSession["User"]
+
+declare module "next-auth/jwt" {
+    interface JWT {
+        role: $Enums.Role
+        id: string
+    }
+}
+
+declare module "next-auth" {
+    interface Session {
+        user: ExtendedUser
+    }
+}
 
 export const authOptions: NextAuthOptions = {
     debug: true,
@@ -30,7 +47,7 @@ export const authOptions: NextAuthOptions = {
                 const { email, password } = credentials;
                 // const pass = await bcryptjs.hash("Big-Bright", 10)
                 // console.log({pass})
-                const user = await prisma.user.findFirst({ where: { email: email.toLowerCase() } })
+                const user = await prisma.ynUser.findFirst({ where: { email: email.toLowerCase() } })
                 if (!user) return null
                 const matchPassword = await bcryptjs.compare(password, user.password)
                 if (!matchPassword) return null
@@ -75,13 +92,15 @@ export const authOptions: NextAuthOptions = {
                 ...session,
                 user: {
                     ...session.user,
-                    id: token.id
+                    image: session.user.image,
+                    role: token.role,
+                    id: token.id,
                 }
             };
         },
         jwt({ token, user }) {
             if (user) {
-                const currentUser = user as unknown as User
+                const currentUser = user as unknown as YnUser
                 return {
                     ...token,
                     id: currentUser.id,

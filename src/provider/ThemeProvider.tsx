@@ -3,6 +3,8 @@ import React from 'react'
 import { ConfigProvider } from 'antd'
 import { appThemeConfig } from '@/config/theme'
 import Aos from "aos"
+import { App as AntdApp } from "antd"
+import { ClientProvider } from './ClientProvider'
 
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {
     React.useEffect(() => {
@@ -12,8 +14,10 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
         })
     }, [])
     return (
-        <div>
-            <ConfigProvider theme={appThemeConfig}> {children} </ConfigProvider>
-        </div>
+        <ClientProvider>
+            <AntdApp>
+                <ConfigProvider theme={appThemeConfig}> {children} </ConfigProvider>
+            </AntdApp>
+        </ClientProvider>
     )
 }

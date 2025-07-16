@@ -1,7 +1,7 @@
 import { fileUpload } from "./fileUpload";
 import { generateSlug } from "./generateSlug";
 // import prisma from "./prisma";
-// import { SessionOption } from "./sessionOption";
+import { statusUpdate } from "./statusUpdate";
 import { urlBase64ToUint8Array } from "./urlBase64ToUint8Array"
 
 export {
@@ -9,5 +9,5 @@ export {
     generateSlug,
     urlBase64ToUint8Array,
     // prisma,
-    // SessionOption,
+    statusUpdate,
 }
