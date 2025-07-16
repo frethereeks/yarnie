@@ -6,10 +6,10 @@ import { Header3 } from '@/components/ui/Typography'
 import { createCategory, updateCategory } from '@/action'
 import { useRouter } from 'next/navigation'
 import { Form, Input } from 'antd'
-import { $Enums, Category } from '@prisma/client'
+import { $Enums, YnCategory } from '@prisma/client'
 import { LuActivity } from 'react-icons/lu'
 
-type TFormProps = Pick<Category, "id" | "name" | "status">
+type TFormProps = Pick<YnCategory, "id" | "name" | "status">
 
 export default function AddCategory({ closeModal, data }: { data?: TFormProps, closeModal: React.Dispatch<React.SetStateAction<boolean>> }) {
     const [loading, setLoading] = useState<boolean>(false)
