@@ -1,16 +1,18 @@
 import { type NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { $Enums, YnUser } from '@prisma/client';
+import { $Enums } from '@prisma/client';
 import jwt from "jsonwebtoken"
 import { appRoutePaths } from '@/routes/paths';
 import prisma from '@/lib/prisma';
 import bcryptjs from "bcryptjs"
-import { DefaultSession, User } from 'next-auth';
+import { TAuthUser } from '@/types';
+import { DefaultSession, User } from "next-auth"
+// import { JWT } from "next-auth/jwt"
 
 export type ExtendedUser = User & {
-    role: $Enums.Role,
+    role: $Enums.Role
     id: string
-} & DefaultSession["User"]
+} & DefaultSession['user'];
 
 declare module "next-auth/jwt" {
     interface JWT {
@@ -25,8 +27,14 @@ declare module "next-auth" {
     }
 }
 
+// declare module "next-auth" {
+//     interface Session {
+//         user: ExtendedUser & DefaultSession["user"]
+//     }
+// }
+
 export const authOptions: NextAuthOptions = {
-    debug: true,
+    debug: process.env.NODE_ENV !== 'production',
     providers: [
         CredentialsProvider({
             name: 'Sign in',
@@ -45,28 +53,28 @@ export const authOptions: NextAuthOptions = {
             async authorize(credentials) {
                 if (!credentials) return null;
                 const { email, password } = credentials;
-                // const pass = await bcryptjs.hash("Big-Bright", 10)
-                // console.log({pass})
+                console.log({ email, password })
                 const user = await prisma.ynUser.findFirst({ where: { email: email.toLowerCase() } })
                 if (!user) return null
                 const matchPassword = await bcryptjs.compare(password, user.password)
                 if (!matchPassword) return null
-                if (user.status === "PENDING") {
-                    throw new Error("Your account status is set to PENDING at the moment. Please, contact the admin for account activation.")
+                if (user.status === "Pending") {
+                    throw new Error("Your account status is set to Pending at the moment. Please, contact the admin for account activation.")
                 }
-                else if (user.status === "SUSPENDED") {
+                else if (user.status === "Suspended") {
                     throw new Error("Oh No! Your account has been suspended. If you believe this is an error, contact the admin")
                 }
-                return user
+                return user as User
             },
         })
     ],
     pages: {
         signIn: appRoutePaths.signin,
-        error: appRoutePaths.home,
+        error: appRoutePaths.signin,
         signOut: appRoutePaths.logout,
     },
     secret: process.env.JWT,
+    useSecureCookies: process.env.NODE_ENV === "production",
     jwt: {
         async encode({ secret, token }) {
             if (!token) throw new Error("No token to encode")
@@ -92,15 +100,14 @@ export const authOptions: NextAuthOptions = {
                 ...session,
                 user: {
                     ...session.user,
-                    image: session.user.image,
                     role: token.role,
                     id: token.id,
                 }
             };
         },
-        jwt({ token, user }) {
+        jwt({ token, user, trigger, session }) {
             if (user) {
-                const currentUser = user as unknown as YnUser
+                const currentUser = user as TAuthUser
                 return {
                     ...token,
                     id: currentUser.id,
@@ -109,6 +116,10 @@ export const authOptions: NextAuthOptions = {
                     name: `${currentUser.firstname} ${currentUser.lastname}`,
                     role: currentUser.role
                 }
+            }
+            // This check is necessary to update the server session in real-time
+            if (trigger === "update") {
+                return { ...token, ...session.user }
             }
 
             return token;

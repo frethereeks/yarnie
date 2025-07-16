@@ -10,6 +10,8 @@ export type Prettify<T> = {
     [P in keyof T]: T[P]
 } & {}
 
+export type TAuthUser = Pick<TUserProps, "id" | "firstname" | "lastname" | "image" | "email" | "role">
+
 export type TCategoryProps = {
     user: {
         id: string, firstname: string, lastname: string
@@ -46,3 +48,4 @@ export type CartProp = {
     quantity: number,
     qtyAvailable?: number,
 }
+
