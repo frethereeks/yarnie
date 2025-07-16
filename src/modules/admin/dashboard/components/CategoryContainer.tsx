@@ -38,13 +38,15 @@ export default function CategoryContainer({ data, role }: PageProps) {
         }),
     }
 
+    const resetSelected = () => {
+        setSelectedRowKeys([])
+        setSelectedData(undefined)
+    }
+
     return (
         <>
-            <DeleteModal key={"8012469234"} openModal={deleteModal} closeModal={setDeleteModal} data={selectedRowKeys} table='category' />
-            <Modal open={uploadModal} afterClose={() => {
-                setSelectedRowKeys([])
-                setSelectedData(undefined)
-            }} onCancel={() => setUploadModal(!uploadModal)} cancelButtonProps={{ style: { width: "93.5%", marginLeft: "0", marginRight: "1rem" } }} okButtonProps={{ style: { display: "none" } }}>
+            <DeleteModal key={"8012469234"} openModal={deleteModal} closeModal={setDeleteModal} data={selectedRowKeys} table='category' resetSelected={resetSelected} />
+            <Modal open={uploadModal} afterClose={resetSelected} onCancel={() => setUploadModal(!uploadModal)} footer={null}>
                 <AddCategory data={selectedData} closeModal={setUploadModal} />
             </Modal>
             <>
