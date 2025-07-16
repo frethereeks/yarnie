@@ -14,30 +14,30 @@ const globalForPrisma = globalThis as unknown as {
 const prisma = globalForPrisma.prisma ?? prismaClientSingleton()
 
 // Middleware to handle category deletion and menu reassignment
-prisma.$use(async (params, next) => {
-    if (params.model === 'Category' && params.action === 'delete') {
-        const categoryIdToDelete = params.args.where.id;
-        console.log({categoryIdToDelete})
+// prisma.$use(async (params, next) => {
+//     if (params.model === 'Category' && params.action === 'delete') {
+//         const categoryIdToDelete = params.args.where.id;
+//         console.log({categoryIdToDelete})
 
-        // Find the "General" category
-        const generalCategory = await prisma.category.findFirst({
-            where: { name: 'General' },
-        });
+//         // Find the "General" category
+//         const generalCategory = await prisma.category.findFirst({
+//             where: { name: 'General' },
+//         });
 
-        if (!generalCategory) {
-            throw new Error('General category not found! Please ensure it exists.');
-        }
+//         if (!generalCategory) {
+//             throw new Error('General category not found! Please ensure it exists.');
+//         }
 
-        // Reassign menus to the "General" category
-        await prisma.menu.updateMany({
-            where: { categoryId: categoryIdToDelete },
-            data: { categoryId: generalCategory.id },
-        });
-    }
+//         // Reassign menus to the "General" category
+//         await prisma.menu.updateMany({
+//             where: { categoryId: categoryIdToDelete },
+//             data: { categoryId: generalCategory.id },
+//         });
+//     }
 
-    // Proceed with the original Prisma operation
-    return next(params);
-});
+//     // Proceed with the original Prisma operation
+//     return next(params);
+// });
 
 export default prisma
 
