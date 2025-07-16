@@ -46,7 +46,7 @@ export default async function Home() {
               <h3 className="heading-four text-primary font-capriola">Newest Arrivals</h3>
               <Link href={appRoutePaths.shop} className="text-xsmall">View all products</Link>
             </div>
-            <div className="grid grid-cols-3 gap-2 md:gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 md:gap-6">
               {
                 res?.products?.filter(el => el.popular).map(product => (<ProductCard key={product.id} {...product} />))
               }
