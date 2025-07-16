@@ -10,8 +10,8 @@ import { AntdRegistry } from "@ant-design/nextjs-registry";
 import StoreProvider from "@/provider/ReduxProvider";
 import { Footer, Header } from "@/modules/shared";
 
-export const play = Play({ subsets: ["latin"], variable: "--play", weight: ["400", "700"], fallback: ["Helvetica", "Arial", "sans-serif"] });
-export const capriola = Capriola({ subsets: ["latin"], variable: "--capriola", weight: ["400"], fallback: ["cursive"] });
+const play = Play({ subsets: ["latin"], variable: "--play", weight: ["400", "700"], fallback: ["Helvetica", "Arial", "sans-serif"] });
+const capriola = Capriola({ subsets: ["latin"], variable: "--capriola", weight: ["400"], fallback: ["cursive"] });
 
 export const metadata: Metadata = {
   title: "Yarnie Crotchet",

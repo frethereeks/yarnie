@@ -9,8 +9,8 @@ import DashLayout from "@/modules/admin/layout/DashLayout";
 import DashImage from "@/modules/admin/layout/DashImage";
 import NextTopLoader from "nextjs-toploader";
 
-export const play = Play({ subsets: ["latin"], variable: "--play", weight: ["400", "700"], fallback: ["Helvetica", "Arial", "sans-serif"] });
-export const capriola = Capriola({ subsets: ["latin"], variable: "--capriola", weight: ["400"], fallback: ["cursive"] });
+const play = Play({ subsets: ["latin"], variable: "--play", weight: ["400", "700"], fallback: ["Helvetica", "Arial", "sans-serif"] });
+const capriola = Capriola({ subsets: ["latin"], variable: "--capriola", weight: ["400"], fallback: ["cursive"] });
 
 export const metadata: Metadata = {
     title: "Yarnie Crotchet",

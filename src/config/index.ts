@@ -16,11 +16,11 @@ export const config = {
         ACCOUNT_HOLDER: process.env.NEXT_PUBLIC_ACCOUNT_HOLDER,
     },
     CLOUDINARY: {
-        API_KEY: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY || "whatevzbro", //look into not exposing this values wither via api endpoint or next ....
+        API_KEY: process.env.NEXT_CLOUDINARY_API_KEY || "whatevzbro", //look into not exposing this values wither via api endpoint or next ....
         UPLOAD_PRESET:
-            process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "egfpi8od",
-        CLOUD_NAME: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "dnl81n8vu",
-        API_SECRET: process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET || "sssshhhhh"
+            process.env.NEXT_CLOUDINARY_UPLOAD_PRESET || "egfpi8od",
+        CLOUD_NAME: process.env.NEXT_CLOUDINARY_CLOUD_NAME || "dnl81n8vu",
+        API_SECRET: process.env.NEXT_CLOUDINARY_API_SECRET || "sssshhhhh"
     },
     NEXT_MAIL: {
         HOST: process.env.NEXT_MAIL_HOST,
