@@ -1,6 +1,5 @@
+export const dynamic = "force-dynamic"
 import { fetchHomeData } from "@/action";
-// import FakeGraph from "@/components/FakeGraph";
-// import FakeSection from "@/components/FakeSection";
 import { ASSETS_URL } from "@/assets";
 import { yarnData } from "@/data";
 import { ProductCard } from "@/modules/shared";

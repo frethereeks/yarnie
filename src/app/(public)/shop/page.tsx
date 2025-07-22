@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"
 import { fetchHomeData } from '@/action'
 import { ASSETS_URL } from '@/assets';
 import { appRoutePaths } from '@/routes/paths';
